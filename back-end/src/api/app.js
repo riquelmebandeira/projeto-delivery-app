@@ -1,7 +1,26 @@
+require('dotenv').config();
 const express = require('express');
+
+const { utils } = require('../utils');
+const routes = require('./Controllers');
 
 const app = express();
 
-app.get('/coffee', (_req, res) => res.status(418).end());
+app.use(express.json());
+
+app.use(utils.LOGIN_ROUTE, routes.loginController);
+
+app.use((err, __req, res, __next) => {
+  const status = utils.ERR_CODES[err.code];
+  console.log(err);
+
+  if (status) {
+    return res.status(status).json({ message: err.message }).end();
+  }
+  
+  return res
+    .status(utils.HTTP_INTERNAL_SERVER_ERROR_STATUS)
+    .json({ message: 'Internal server error' }).end();
+});
 
 module.exports = app;
