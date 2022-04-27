@@ -73,7 +73,7 @@ jobs:
       - name: Restore protected files
         uses: ./.github/actions/blocked-files-checkout
         with:
-          restore_branch: 'main'
+          restore_branch: 'master'
           
       - name: Run StyleLint evaluator
         uses: ./.github/actions/stylelint-evaluator
@@ -130,7 +130,7 @@ jobs:
       - name: Restore protected files
         uses: ./.github/actions/blocked-files-checkout
         with:
-          restore_branch: 'main'
+          restore_branch: 'master'
 
       - name: Run Docker Jest evaluation
         id: evaluator
