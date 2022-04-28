@@ -9,10 +9,10 @@ const app = express();
 app.use(express.json());
 
 app.use(utils.LOGIN_ROUTE, routes.loginController);
+app.use(utils.USER_ROUTE, routes.userController);
 
 app.use((err, __req, res, __next) => {
   const status = utils.ERR_CODES[err.code];
-  console.log(err);
 
   if (status) {
     return res.status(status).json({ message: err.message }).end();

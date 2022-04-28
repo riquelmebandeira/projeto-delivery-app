@@ -47,7 +47,7 @@ const ERR_CODES = {
 };
 
 // Routes
-const USER_ROUTE = '/user';
+const USER_ROUTE = '/users';
 const LOGIN_ROUTE = '/login';
 const CATEGORY_ROUTE = '/categories';
 const POST_ROUTE = '/post';
