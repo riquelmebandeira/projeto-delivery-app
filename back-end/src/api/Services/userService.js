@@ -17,7 +17,7 @@ function validate(registrationInfo) {
   return registrationInfo;
 }
 
-async function register({ name, email, pwd }) {
+async function register({ name, email, password: pwd }) {
   const user = await User.findOne({ where: { email } });
 
   if (user) {
@@ -31,7 +31,7 @@ async function register({ name, email, pwd }) {
 
   const createdUser = await User.create({ name, email, password: encryptedPwd, role: 'customer' });
 
-  const { password, ...userInfo } = createdUser;
+  const { password, ...userInfo } = createdUser.dataValues;
 
   return jwt.sign(userInfo, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
 }
