@@ -1,5 +1,9 @@
 // Messages
 const MESSAGES = {
+  NAME_INVALID: '"name" length must be 12 characters long',
+  NAME_NOT_FOUND: '"name" is required',
+  NAME_NOT_STRING: '"name" should be a string',
+  NAME_EMPTY: '"name" is not allowed to be empty',
   EMAIL_INVALID: '"email" must be a valid email',
   EMAIL_NOT_FOUND: '"email" is required',
   EMAIL_NOT_STRING: '"email" should be a string',
