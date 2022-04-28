@@ -1,5 +1,5 @@
 const joi = require('joi');
-const { utils } = require('../utils/');
+const { utils } = require('../utils');
 
 const registerSchema = joi.object().keys({
   name: joi.string().required().min(12).messages({
