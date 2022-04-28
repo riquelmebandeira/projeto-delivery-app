@@ -29,7 +29,7 @@ async function login({ email, password }) {
 
   user = user.dataValues;
 
-  const encrypted = md5(password)
+  const encrypted = md5(password);
 
   console.log(encrypted);
 

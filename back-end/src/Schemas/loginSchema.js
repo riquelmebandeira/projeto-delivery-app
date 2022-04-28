@@ -1,5 +1,5 @@
 const joi = require('joi');
-const { utils } = require('../utils/');
+const { utils } = require('../utils');
 
 const userSchema = joi.object().keys({
   email: joi.string().required().email().messages({

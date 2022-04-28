@@ -17,7 +17,7 @@ const MESSAGES = {
   UNAUTHORIZED_USER: 'Unauthorized user',
 };
 
-const JWT_SECRET = 'nomeAEscolher'
+const JWT_SECRET = 'nomeAEscolher';
 
 // HTTP response status codes
 const HTTP_OK_STATUS = 200;
