@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
+import '../styles/CustomerProducts/Body/index.css';
 
 const productMock = [
   {
@@ -22,7 +23,7 @@ export default function CustomerProducts() {
 
       <body>
 
-        <div>
+        <div className="products-container">
           {
             productMock.map((product, index) => (
               <ProductCard key={ index } dataCard={ product } />

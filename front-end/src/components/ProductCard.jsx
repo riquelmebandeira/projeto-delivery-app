@@ -13,15 +13,19 @@ export default function ProductCard({ dataCard }) {
       </div>
 
       <div className="input-container">
-        <button type="button">
-          -
-        </button>
+        <h5>{ dataCard.name }</h5>
 
-        <input type="text" placeholder="0" />
+        <div style={ { marginLeft: 45 } }>
+          <button type="button">
+            -
+          </button>
 
-        <button type="button">
-          +
-        </button>
+          <input type="text" placeholder="0" />
+
+          <button type="button">
+            +
+          </button>
+        </div>
       </div>
 
     </div>
