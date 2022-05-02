@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
+import CustomerProducts from './pages/CustomerProducts';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <Route index path="/login" element="<Login />" />
       <Route path="/register" element="<Register />" />
 
-      <Route path="/customer/products" element="<CustumerProducts />" />
+      <Route path="/customer/products" element={ <CustomerProducts /> } />
       <Route path="/customer/checkout" element="<CustomerCheckout />" />
       <Route path="/customer/orders" element="<CustomerOrders />">
         <Route path=":orderId" element="<CustomerOrdersDetails />" />
