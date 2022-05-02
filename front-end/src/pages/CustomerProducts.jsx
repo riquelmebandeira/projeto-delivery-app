@@ -31,9 +31,12 @@ export default function CustomerProducts() {
           }
         </div>
 
+        <button type="button">
+          Ver carrinho: R$ReduxMoney
+        </button>
+
       </body>
 
-      {/* <Footer /> */}
     </>
   );
 }
