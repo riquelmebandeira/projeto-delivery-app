@@ -53,7 +53,7 @@ const ERR_CODES = {
 // Routes
 const USER_ROUTE = '/users';
 const LOGIN_ROUTE = '/login';
-const CATEGORY_ROUTE = '/categories';
+const SALE_ROUTE = '/sales';
 const POST_ROUTE = '/post';
 
 // Port
@@ -75,7 +75,7 @@ module.exports = {
   HTTP_INTERNAL_SERVER_ERROR_STATUS,
   USER_ROUTE,
   LOGIN_ROUTE,
-  CATEGORY_ROUTE,
+  SALE_ROUTE,
   POST_ROUTE,
   PORT,
   ERR_CODES,

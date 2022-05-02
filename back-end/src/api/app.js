@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use(utils.LOGIN_ROUTE, routes.loginController);
 app.use(utils.USER_ROUTE, routes.userController);
+app.use(utils.SALE_ROUTE, routes.saleRouter);
 
 app.use((err, __req, res, __next) => {
   const status = utils.ERR_CODES[err.code];
