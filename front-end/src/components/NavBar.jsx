@@ -6,27 +6,27 @@ function NavBar() {
   return (
     <header>
       <div className="flex-container">
-        <Link to="/customer/products" className="produtos">
+        <Link data-testid="11" to="/customer/products" className="produtos">
           <h5>
-            Produtos
+            PRODUTOS
           </h5>
         </Link>
 
-        <Link to="/customer/orders">
+        <Link data-testid="12" to="/customer/orders">
           <h5>
-            Meus Pedidos
+            MEUS PEDIDOS
           </h5>
         </Link>
       </div>
 
       <div className="flex-container">
-        <div className="name">
+        <div className="name" data-testid="13">
           <h5>
             Cicrano da Silva
           </h5>
         </div>
 
-        <Link to="/login" className="logout">
+        <Link data-testid="14" to="/login" className="logout">
           <h5>
             Sair
           </h5>
