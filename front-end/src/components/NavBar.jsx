@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/NavBar/index.css';
 import { Link } from 'react-router-dom';
 
 function NavBar() {
+  const [sessionUser, setSessionUser] = useState('');
+
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
+  useEffect(() => {
+    const userStorage = localStorage.getItem('user');
+    setSessionUser(userStorage);
+  }, []);
+
   return (
     <header>
       <div className="flex-container">
@@ -23,10 +34,11 @@ function NavBar() {
         <div className="name" data-testid="13">
           <h5>
             Cicrano da Silva
+            { sessionUser.name }
           </h5>
         </div>
 
-        <Link data-testid="14" to="/login" className="logout">
+        <Link data-testid="14" to="/login" className="logout" onClick={ handleLogout }>
           <h5>
             Sair
           </h5>

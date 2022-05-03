@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
 import '../styles/CustomerProducts/Body/index.css';
@@ -35,12 +36,20 @@ export default function CustomerProducts() {
 
         </div>
 
-        <button type="button" className="card-button" data-testid="21">
-          <text data-testid="79">
-            Ver carrinho: R$
-            {totalValue}
-          </text>
-        </button>
+        <Link to="/customer/checkout" className="card-button">
+          <button
+            type="button"
+            className="card-button"
+            data-testid="21"
+          >
+
+            <text data-testid="79">
+              Ver carrinho: R$
+              {totalValue}
+            </text>
+
+          </button>
+        </Link>
 
       </body>
 
