@@ -53,8 +53,8 @@ const ERR_CODES = {
 // Routes
 const USER_ROUTE = '/users';
 const LOGIN_ROUTE = '/login';
+const PRODUCT_ROUTE = '/products';
 const SALE_ROUTE = '/sales';
-const POST_ROUTE = '/post';
 
 // Port
 const PORT = '3000';
@@ -76,7 +76,7 @@ module.exports = {
   USER_ROUTE,
   LOGIN_ROUTE,
   SALE_ROUTE,
-  POST_ROUTE,
+  PRODUCT_ROUTE,
   PORT,
   ERR_CODES,
   MESSAGES,
