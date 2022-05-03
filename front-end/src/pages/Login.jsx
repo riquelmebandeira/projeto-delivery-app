@@ -2,22 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import { requestLogin } from '../services/requests';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [role, setRole] = useState('');
 
   const login = async (event) => {
     event.preventDefault();
     try {
-      console.log('login');
       const endpoint = '/login';
 
       const { token, user } = await requestLogin(endpoint, { email, password });
-
-      localStorage.setItem('user', JSON.stringify({ token, ...user }));
+      setRole(user.role);
+      localStorage.setItem('token', JSON.stringify({ token }));
+      localStorage.setItem('user', JSON.stringify({ ...user }));
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);

@@ -17,8 +17,9 @@ const Register = () => {
       const endpoint = '/users';
 
       const { token, user } = await requestLogin(endpoint, { name, email, password });
-
-      localStorage.setItem('user', JSON.stringify({ token, ...user }));
+      setRole(user.role);
+      localStorage.setItem('token', JSON.stringify({ token }));
+      localStorage.setItem('user', JSON.stringify({ ...user }));
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);
@@ -73,7 +74,8 @@ const Register = () => {
           ? (
             <p data-testid="common_register__element-invalid_register">
               {
-                `O endereço de e-mail ou a senha não estão corretos.
+                `O endereço de e-mail, senha ou nome 
+                não atendem ao requisitos do cadastro.
                     Por favor, tente novamente.`
               }
             </p>
