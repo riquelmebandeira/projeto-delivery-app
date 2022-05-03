@@ -11,7 +11,8 @@ function NavBar() {
 
   useEffect(() => {
     const userStorage = localStorage.getItem('user');
-    setSessionUser(userStorage);
+
+    setSessionUser(JSON.parse(userStorage));
   }, []);
 
   return (
@@ -33,8 +34,7 @@ function NavBar() {
       <div className="flex-container">
         <div className="name" data-testid="13">
           <h5>
-            Cicrano da Silva
-            { sessionUser.name }
+            { (sessionUser) ? sessionUser.username : null }
           </h5>
         </div>
 
