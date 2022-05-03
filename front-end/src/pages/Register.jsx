@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { requestLogin } from '../services/requests';
@@ -16,10 +17,11 @@ const Register = () => {
     try {
       const endpoint = '/users';
 
-      const { token, user } = await requestLogin(endpoint, { name, email, password });
-      setRole(user.role);
+      const { token } = await requestLogin(endpoint, { name, email, password });
+      const decoded = jwtDecode(token);
+      setRole(decoded.role);
       localStorage.setItem('token', JSON.stringify({ token }));
-      localStorage.setItem('user', JSON.stringify({ ...user }));
+      localStorage.setItem('user', JSON.stringify({ ...decoded }));
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);
