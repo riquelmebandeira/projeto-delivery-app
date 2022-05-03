@@ -10,17 +10,19 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
-  const [role, setRole] = useState(false);
+  const [role, setRole] = useState('');
 
   const login = async (event) => {
     event.preventDefault();
     try {
       const endpoint = '/login';
-
+      
       const { token } = await requestLogin(endpoint, { email, password });
       const decoded = jwtDecode(token);
       setRole(decoded.role);
-      localStorage.setItem('user', JSON.stringify({ token, ...decoded }));
+      localStorage.setItem('token', JSON.stringify({ token }));
+      localStorage.setItem('user', JSON.stringify({ ...decoded }));
+
       setIsLogged(true);
     } catch (error) {
       console.log(error);
@@ -37,7 +39,7 @@ const Login = () => {
     setFailedTryLogin(false);
   }, [email, password]);
 
-  if (isLogged) return <Navigate to={ `/${role}/products` } />;
+  if (isLogged) return <Navigate to={ `/${role}/` } />;
 
   const MIN_CHARACTER = 6;
   const EMAIL_REGEX = /.+@.+\..+/;
