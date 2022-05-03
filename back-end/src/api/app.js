@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 
 const { utils } = require('../utils');
 const routes = require('./Controllers');
@@ -7,6 +8,7 @@ const routes = require('./Controllers');
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.use(utils.LOGIN_ROUTE, routes.loginController);
 app.use(utils.USER_ROUTE, routes.userController);
@@ -16,6 +18,7 @@ app.use(utils.SALE_ROUTE, routes.saleRouter);
 app.use((err, __req, res, __next) => {
   const status = utils.ERR_CODES[err.code];
 
+  console.log(err);
   if (status) {
     return res.status(status).json({ message: err.message }).end();
   }
