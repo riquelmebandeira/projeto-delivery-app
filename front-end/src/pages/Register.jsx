@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import { requestLogin } from '../services/requests';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -13,9 +14,9 @@ const Register = () => {
   const register = async (event) => {
     event.preventDefault();
     try {
-      const endpoint = '/register';
+      const endpoint = '/users';
 
-      const { token, user } = await requestLogin(endpoint, { email, password });
+      const { token, user } = await requestLogin(endpoint, { name, email, password });
 
       localStorage.setItem('user', JSON.stringify({ token, ...user }));
       setIsLogged(true);
