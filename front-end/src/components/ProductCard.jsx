@@ -33,20 +33,21 @@ export default function ProductCard({ dataCard }) {
     <div
       className="card-container"
       style={ { backgroundImage: `url(${dataCard.image})` } }
+      data-testid="17"
     >
 
       <div style={ { alignSelf: 'start', fontSize: 20 } }>
-        <h5>
+        <h5 data-testid="16">
           R$
           {dataCard.value}
         </h5>
       </div>
 
       <div className="input-container">
-        <h5>{ dataCard.name }</h5>
+        <h5 data-testid="15">{ dataCard.name }</h5>
 
         <div style={ { marginLeft: 45 } }>
-          <button type="button" onClick={ handleDecrement }>
+          <button type="button" onClick={ handleDecrement } data-testid="19">
             -
           </button>
 
@@ -55,9 +56,10 @@ export default function ProductCard({ dataCard }) {
             value={ inputValue }
             placeholder="0"
             onChange={ (e) => setInputValue(+e.target.value) }
+            data-testid="20"
           />
 
-          <button type="button" onClick={ handleIncrement }>
+          <button type="button" onClick={ handleIncrement } data-testid="18">
             +
           </button>
         </div>

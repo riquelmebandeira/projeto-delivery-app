@@ -35,9 +35,11 @@ export default function CustomerProducts() {
 
         </div>
 
-        <button type="button" className="card-button">
-          Ver carrinho: R$
-          {totalValue}
+        <button type="button" className="card-button" data-testid="21">
+          <text data-testid="79">
+            Ver carrinho: R$
+            {totalValue}
+          </text>
         </button>
 
       </body>
