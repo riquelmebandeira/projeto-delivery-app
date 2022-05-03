@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/ProductCard/index.css';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import {
+  incrementQuantity,
+  decrementQuantity,
+  incrementValue,
+} from '../redux/features/productsSlice';
 
 export default function ProductCard({ dataCard }) {
-  const [prodQuantity, setProdQuantity] = useState(0);
   const [inputValue, setInputValue] = useState(0);
 
-  useEffect(() => {
-    setProdQuantity((inputValue * dataCard.value).toFixed(2));
-    // dispatch total Value ??
-  }, [inputValue, dataCard]);
+  const dispatch = useDispatch();
+
+  const handleIncrement = () => {
+    dispatch(incrementQuantity());
+
+    dispatch(incrementValue(dataCard.value));
+
+    setInputValue(inputValue + 1);
+  };
+
+  const handleDecrement = () => {
+    dispatch(decrementQuantity());
+
+    dispatch(incrementValue(dataCard.value));
+
+    setInputValue(inputValue - 1);
+  };
 
   return (
     <div
@@ -28,7 +46,7 @@ export default function ProductCard({ dataCard }) {
         <h5>{ dataCard.name }</h5>
 
         <div style={ { marginLeft: 45 } }>
-          <button type="button" onClick={ () => setInputValue(inputValue - 1) }>
+          <button type="button" onClick={ handleDecrement }>
             -
           </button>
 
@@ -39,7 +57,7 @@ export default function ProductCard({ dataCard }) {
             onChange={ (e) => setInputValue(+e.target.value) }
           />
 
-          <button type="button" onClick={ () => setInputValue(inputValue + 1) }>
+          <button type="button" onClick={ handleIncrement }>
             +
           </button>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
 import '../styles/CustomerProducts/Body/index.css';
@@ -17,6 +18,8 @@ const productMock = [
 ];
 
 export default function CustomerProducts() {
+  const totalValue = useSelector((state) => state.products.totalValue);
+
   return (
     <>
       <NavBar />
@@ -29,10 +32,12 @@ export default function CustomerProducts() {
               <ProductCard key={ index } dataCard={ product } />
             ))
           }
+
         </div>
 
-        <button type="button">
-          Ver carrinho: R$ReduxMoney
+        <button type="button" className="card-button">
+          Ver carrinho: R$
+          {totalValue}
         </button>
 
       </body>
