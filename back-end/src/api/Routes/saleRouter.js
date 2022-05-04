@@ -8,6 +8,6 @@ const { findAll, create } = require('../Controllers/saleController');
 const router = Router();
 
 router.get('/', rescue(validateJWT), rescue(findAll));
-router.post('/', rescue(validateSaleData), rescue(create));
+router.post('/', rescue(validateJWT), rescue(validateSaleData), rescue(create));
 
 module.exports = router;
