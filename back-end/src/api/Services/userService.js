@@ -36,7 +36,14 @@ async function register({ name, email, password: pwd }) {
   return jwt.sign(userInfo, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
 }
 
+async function findAll() {
+  const users = await User.findAll();
+
+  return users;
+}
+
 module.exports = {
   validate,
   register,
+  findAll,
 };
