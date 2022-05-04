@@ -23,7 +23,7 @@ async function login({ email, password }) {
   if (!user) {
     const e = new Error();
     e.message = utils.MESSAGES.USER_NOT_EXISTS;
-    e.code = 'BAD_REQUEST';
+    e.code = 'NOT_FOUND';
     throw e;
   }
 

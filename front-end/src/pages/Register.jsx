@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import Button from '../components/Button';
 import Input from '../components/Input';
+import { requestLogin } from '../services/requests';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -9,15 +11,18 @@ const Register = () => {
   const [name, setName] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [role, setRole] = useState('');
 
   const register = async (event) => {
     event.preventDefault();
     try {
-      const endpoint = '/register';
+      const endpoint = '/users';
 
-      const { token, user } = await requestLogin(endpoint, { email, password });
-
-      localStorage.setItem('user', JSON.stringify({ token, ...user }));
+      const { token } = await requestLogin(endpoint, { name, email, password });
+      const decoded = await jwtDecode(token);
+      setRole(decoded.role);
+      localStorage.setItem('token', JSON.stringify({ token }));
+      localStorage.setItem('user', JSON.stringify({ ...decoded }));
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);
@@ -72,7 +77,8 @@ const Register = () => {
           ? (
             <p data-testid="common_register__element-invalid_register">
               {
-                `O endereço de e-mail ou a senha não estão corretos.
+                `O endereço de e-mail, senha ou nome 
+                não atendem ao requisitos do cadastro.
                     Por favor, tente novamente.`
               }
             </p>
