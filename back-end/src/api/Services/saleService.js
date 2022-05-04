@@ -5,13 +5,15 @@ async function findAll() {
 }
 
 async function create(data) {
-  const { products, userId, sellerId, deliveryAddres, deliveryNumber } = data;
+  const { products, userId, sellerId, deliveryAddress, deliveryNumber } = data;
 
   let totalPrice = products.reduce((sum, product) => sum + (+product.price), 0);
 
   totalPrice = totalPrice.toFixed(2);
 
-  const newSale = Sale.create({ userId, sellerId, totalPrice, deliveryAddres, deliveryNumber });
+  const newSale = await Sale.create(
+    { userId, sellerId, totalPrice, deliveryAddress, deliveryNumber },
+  );
 
   const { id: saleId } = newSale.dataValues;
 
