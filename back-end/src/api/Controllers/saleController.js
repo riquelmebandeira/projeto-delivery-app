@@ -7,4 +7,17 @@ async function findAll(_req, res) {
   return res.status(utils.HTTP_OK_STATUS).json(sales);
 }
 
-module.exports = { findAll };
+async function create(req, res) {
+  const { id: userId } = req.user;
+
+  const saleData = { userId, ...req.body };
+
+  const newSale = await saleService.create(saleData);
+
+  return res.status(utils.HTTP_CREATED_STATUS).json(newSale);
+}
+
+module.exports = {
+  findAll,
+  create,
+  };
