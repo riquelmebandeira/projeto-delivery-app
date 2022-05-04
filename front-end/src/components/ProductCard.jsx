@@ -7,6 +7,8 @@ import {
   decrementQuantity,
   incrementValue,
 } from '../redux/features/productsSlice';
+import Button from './Button';
+import Input from './Input';
 
 export default function ProductCard({ dataCard }) {
   const [inputValue, setInputValue] = useState(0);
@@ -47,21 +49,31 @@ export default function ProductCard({ dataCard }) {
         <h5 data-testid="15">{ dataCard.name }</h5>
 
         <div style={ { marginLeft: 45 } }>
-          <button type="button" onClick={ handleDecrement } data-testid="19">
-            -
-          </button>
 
-          <input
+          <Button
+            text="-"
+            type="button"
+            disabled={ false }
+            onClick={ handleDecrement }
+            dataTestId="19"
+          />
+
+          <Input
             type="text"
             value={ inputValue }
             placeholder="0"
             onChange={ (e) => setInputValue(+e.target.value) }
-            data-testid="20"
+            dataTestId="20"
           />
 
-          <button type="button" onClick={ handleIncrement } data-testid="18">
-            +
-          </button>
+          <Button
+            text="+"
+            type="button"
+            disabled={ false }
+            onClick={ handleIncrement }
+            dataTestId="18"
+          />
+
         </div>
       </div>
 
