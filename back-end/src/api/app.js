@@ -9,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(express.static('public'));
 
 app.use(utils.LOGIN_ROUTE, routes.loginController);
 app.use(utils.USER_ROUTE, routes.userController);
