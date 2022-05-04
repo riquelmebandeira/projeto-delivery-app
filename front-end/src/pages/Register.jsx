@@ -11,6 +11,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [role, setRole] = useState('');
 
   const register = async (event) => {
     event.preventDefault();
@@ -18,7 +19,7 @@ const Register = () => {
       const endpoint = '/users';
 
       const { token } = await requestLogin(endpoint, { name, email, password });
-      const decoded = jwtDecode(token);
+      const decoded = await jwtDecode(token);
       setRole(decoded.role);
       localStorage.setItem('token', JSON.stringify({ token }));
       localStorage.setItem('user', JSON.stringify({ ...decoded }));
