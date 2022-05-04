@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
+import { requestProducts } from '../services/requests';
 import '../styles/CustomerProducts/Body/index.css';
 
-const productMock = [
-  {
-    value: 4.49,
-    image: 'https://www.carone.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/3/133579_B.jpg',
-    name: 'Becks 330ml',
-  },
-  {
-    value: 4.49,
-    image: 'https://www.carone.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/3/133579_B.jpg',
-    name: 'Becks 330ml',
-  },
-];
-
 export default function CustomerProducts() {
+  const [products, setProducts] = useState([]);
+
   const totalValue = useSelector((state) => state.products.totalValue);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const endpoint = '/products';
+      const response = await requestProducts(endpoint);
+
+      setProducts(response);
+    };
+
+    getProducts();
+  }, []);
 
   return (
     <>
@@ -29,9 +30,9 @@ export default function CustomerProducts() {
 
         <div className="products-container">
           {
-            productMock.map((product, index) => (
+            (products) ? products.map((product, index) => (
               <ProductCard key={ index } dataCard={ product } />
-            ))
+            )) : null
           }
 
         </div>

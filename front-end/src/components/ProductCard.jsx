@@ -16,7 +16,7 @@ export default function ProductCard({ dataCard }) {
   const handleIncrement = () => {
     dispatch(incrementQuantity());
 
-    dispatch(incrementValue(dataCard.value));
+    dispatch(incrementValue(dataCard.price));
 
     setInputValue(inputValue + 1);
   };
@@ -24,7 +24,7 @@ export default function ProductCard({ dataCard }) {
   const handleDecrement = () => {
     dispatch(decrementQuantity());
 
-    dispatch(incrementValue(dataCard.value));
+    dispatch(incrementValue(dataCard.price));
 
     setInputValue(inputValue - 1);
   };
@@ -32,7 +32,7 @@ export default function ProductCard({ dataCard }) {
   return (
     <div
       className="card-container"
-      style={ { backgroundImage: `url(${dataCard.image})` } }
+      style={ { backgroundImage: `url(${dataCard.url_image})` } }
       data-testid="17"
     >
 
