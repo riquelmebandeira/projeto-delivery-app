@@ -7,7 +7,7 @@ async function findAll() {
 async function create(data) {
   const { products, userId, sellerId, deliveryAddres, deliveryNumber } = data;
 
-  let totalPrice = products.reduce((sum, product) => sum + product.price, 0);
+  let totalPrice = products.reduce((sum, product) => sum + (+product.price), 0);
 
   totalPrice = totalPrice.toFixed(2);
 
