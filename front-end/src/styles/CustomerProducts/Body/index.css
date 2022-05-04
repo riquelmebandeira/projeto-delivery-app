@@ -8,16 +8,16 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
-  width: 80%;
   margin-top: 40px;
+  width: 80%;
   /* border: solid black 1px; */
 }
 
 .card-button {
-  width: 220px;
-  height: 45px;
+  align-self: flex-end;
   font-size: large;
   font-weight: bold;
-  align-self: flex-end;
+  height: 45px;
   margin-right: 10%;
+  width: 220px;
 }

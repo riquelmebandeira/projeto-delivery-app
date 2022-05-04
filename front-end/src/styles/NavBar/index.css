@@ -1,18 +1,18 @@
 header {
+  background-color: #0d6750;
+  color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #0d6750;
-  color: white;
 }
 
 a {
-  text-decoration: none;
   color: white;
+  text-decoration: none;
 }
 
 h5 {
- margin: 20px;
+  margin: 20px;
 }
 
 .produtos {
