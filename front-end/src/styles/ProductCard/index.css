@@ -1,12 +1,12 @@
 .card-container {
   align-items: center;
-  background-size: 100%;
   background-repeat: no-repeat;
+  background-size: 100%;
   border: solid rgb(223, 222, 222) 1px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 300px;
+  justify-content: space-between;
   margin: 15px;
   width: 200px;
 }
