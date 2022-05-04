@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -55,6 +55,7 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
         allowNull: false,
+        defaultValue: 'Pendente'
       },
     });
   },
