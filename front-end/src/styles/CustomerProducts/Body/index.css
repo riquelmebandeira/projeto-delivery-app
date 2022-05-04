@@ -10,14 +10,12 @@ body {
   margin: auto;
   margin-top: 40px;
   width: 80%;
-  
-  /* border: solid black 1px; */
 }
 
 .card-button {
   align-self: flex-end;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 900;
   height: 45px;
   margin-right: 10%;
   width: 220px;
