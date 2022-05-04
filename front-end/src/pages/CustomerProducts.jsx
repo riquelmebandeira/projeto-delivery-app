@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { requestProducts } from '../services/requests';
+
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
-import { requestProducts } from '../services/requests';
+
 import '../styles/CustomerProducts/Body/index.css';
 
 export default function CustomerProducts() {
   const [products, setProducts] = useState([]);
+  const [sessionUser, setSessionUser] = useState(user);
 
   const totalValue = useSelector((state) => state.products.totalValue);
 
   useEffect(() => {
+    const userStorage = JSON.parse(localStorage.getItem('user'));
+    console.log(userStorage);
+    setSessionUser(userStorage);
+    const { token } = userStorage;
+
     const getProducts = async () => {
       const endpoint = '/products';
-      const response = await requestProducts(endpoint);
+      const response = await requestProducts(endpoint, token);
 
       setProducts(response);
     };
@@ -42,13 +50,14 @@ export default function CustomerProducts() {
           <button
             type="button"
             className="card-button"
-            data-testid="21"
+            data-testid="customer_products__button-cart"
+            disabled={ products.length === 0 }
           >
 
-            <text data-testid="79">
+            <p data-testid="customer_products__checkout-bottom-value">
               Ver carrinho: R$
-              {totalValue}
-            </text>
+              { totalValue }
+            </p>
 
           </button>
         </Link>

@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/NavBar/index.css';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/NavBar/index.css';
 
-function NavBar() {
-  const [sessionUser, setSessionUser] = useState('');
+function NavBar(user) {
+  const [sessionUser] = useState(user);
 
   const handleLogout = () => {
     localStorage.clear();
   };
 
-  useEffect(() => {
-    const userStorage = localStorage.getItem('user');
-
-    setSessionUser(JSON.parse(userStorage));
-  }, []);
-
   return (
-    <header>
+    <nav>
       <div className="flex-container">
-        <Link data-testid="11" to="/customer/products" className="produtos">
+        <Link
+          data-testid="customer_products__element-navbar-link-products"
+          to="/customer/products"
+          className="produtos"
+        >
           <h5>
             PRODUTOS
           </h5>
         </Link>
 
-        <Link data-testid="12" to="/customer/orders">
+        <Link
+          data-testid="customer_products__element-navbar-link-orders"
+          to="/customer/orders"
+        >
           <h5>
             MEUS PEDIDOS
           </h5>
@@ -32,19 +33,27 @@ function NavBar() {
       </div>
 
       <div className="flex-container">
-        <div className="name" data-testid="13">
+        <div
+          className="name"
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
           <h5>
-            { (sessionUser) ? sessionUser.username : null }
+            { (sessionUser) ? sessionUser.name : null }
           </h5>
         </div>
 
-        <Link data-testid="14" to="/login" className="logout" onClick={ handleLogout }>
+        <Link
+          data-testid="customer_products__element-navbar-link-logout"
+          to="/login"
+          className="logout"
+          onClick={ handleLogout }
+        >
           <h5>
             Sair
           </h5>
         </Link>
       </div>
-    </header>
+    </nav>
   );
 }
 

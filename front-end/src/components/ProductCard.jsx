@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import '../styles/ProductCard/index.css';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import {
   incrementQuantity,
   decrementQuantity,
   incrementValue,
 } from '../redux/features/productsSlice';
+
 import Button from './Button';
 import Input from './Input';
+
+import '../styles/ProductCard/index.css';
 
 export default function ProductCard({ dataCard }) {
   const [inputValue, setInputValue] = useState(0);
@@ -17,17 +20,13 @@ export default function ProductCard({ dataCard }) {
 
   const handleIncrement = () => {
     dispatch(incrementQuantity());
-
     dispatch(incrementValue(inputValue >= 0 ? dataCard.price : null));
-
     setInputValue(inputValue >= 0 ? inputValue + 1 : inputValue);
   };
 
   const handleDecrement = () => {
     dispatch(inputValue <= 0 ? null : decrementQuantity());
-
     dispatch(incrementValue(inputValue <= 0 ? null : dataCard.price));
-
     setInputValue(inputValue <= 0 ? inputValue : inputValue - 1);
   };
 
@@ -35,18 +34,19 @@ export default function ProductCard({ dataCard }) {
     <div
       className="card-container"
       style={ { backgroundImage: `url(${dataCard.url_image})` } }
-      data-testid="17"
+      data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
     >
-
       <div style={ { alignSelf: 'start', fontSize: 20 } }>
-        <h5 data-testid="16">
+        <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
           R$
-          {dataCard.value}
+          { dataCard.value }
         </h5>
       </div>
 
       <div className="input-container">
-        <h5 data-testid="15">{ dataCard.name }</h5>
+        <h5 data-testid={ `customer_products__element-card-title-${dataCard.id}` }>
+          { dataCard.name }
+        </h5>
 
         <div style={ { marginLeft: 45 } }>
 
@@ -55,7 +55,7 @@ export default function ProductCard({ dataCard }) {
             type="button"
             disabled={ false }
             onClick={ handleDecrement }
-            dataTestId="19"
+            dataTestId={ `customer_products__button-card-rm-item-${dataCard.id}` }
           />
 
           <Input
@@ -63,7 +63,7 @@ export default function ProductCard({ dataCard }) {
             value={ inputValue }
             placeholder="0"
             onChange={ (e) => setInputValue(+e.target.value) }
-            dataTestId="20"
+            dataTestId={ `customer_products__input-card-quantity-${dataCard.id}` }
           />
 
           <Button
@@ -71,12 +71,11 @@ export default function ProductCard({ dataCard }) {
             type="button"
             disabled={ false }
             onClick={ handleIncrement }
-            dataTestId="18"
+            dataTestId={ `customer_products__button-card-add-item-${dataCard.id}` }
           />
 
         </div>
       </div>
-
     </div>
   );
 }

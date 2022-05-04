@@ -32,5 +32,6 @@ button {
   border-radius: 5px;
   color: white;
   height: 36px;
+  min-width: fit-content;
   width: 36px;
 }
