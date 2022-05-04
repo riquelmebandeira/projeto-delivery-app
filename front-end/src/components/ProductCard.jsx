@@ -18,17 +18,17 @@ export default function ProductCard({ dataCard }) {
   const handleIncrement = () => {
     dispatch(incrementQuantity());
 
-    dispatch(incrementValue(dataCard.price));
+    dispatch(incrementValue(inputValue >= 0 ? dataCard.price : null));
 
-    setInputValue(inputValue + 1);
+    setInputValue(inputValue >= 0 ? inputValue + 1 : inputValue);
   };
 
   const handleDecrement = () => {
-    dispatch(decrementQuantity());
+    dispatch(inputValue <= 0 ? null : decrementQuantity());
 
-    dispatch(incrementValue(dataCard.price));
+    dispatch(incrementValue(inputValue <= 0 ? null : dataCard.price));
 
-    setInputValue(inputValue - 1);
+    setInputValue(inputValue <= 0 ? inputValue : inputValue - 1);
   };
 
   return (

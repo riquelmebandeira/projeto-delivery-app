@@ -29,6 +29,7 @@ export default function CustomerProducts() {
       <body>
 
         <div className="products-container">
+
           {
             (products) ? products.map((product, index) => (
               <ProductCard key={ index } dataCard={ product } />
