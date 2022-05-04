@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  margin-top: 40px;
+  width: 80%;
+}
+
+.card-button {
+  align-self: flex-end;
+  font-size: 18px;
+  font-weight: 900;
+  height: 45px;
+  margin-right: 10%;
+  width: 220px;
+}

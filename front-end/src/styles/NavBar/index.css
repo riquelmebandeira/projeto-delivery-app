@@ -1,0 +1,36 @@
+header {
+  background-color: #0d6750;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+h5 {
+  margin: 20px;
+}
+
+.produtos {
+  background-color: #00c176;
+  color: black;
+}
+
+.name {
+  background-color: #39047e;
+}
+
+.logout {
+  background-color: #297cf8;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+}

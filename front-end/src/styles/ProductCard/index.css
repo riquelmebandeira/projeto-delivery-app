@@ -1,0 +1,36 @@
+.card-container {
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border: solid rgb(223, 222, 222) 1px;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  justify-content: space-between;
+  margin: 15px;
+  width: 200px;
+}
+
+.input-container {
+  align-items: center;
+  background-color: rgb(223, 222, 222);
+  display: flex;
+  flex-direction: column;
+  height: 35%;
+  width: 100%;
+}
+
+input {
+  border-radius: 5px;
+  height: 80%;
+  text-align: center;
+  width: 20%;
+}
+
+button {
+  background-color: #0d6750;
+  border-radius: 5px;
+  color: white;
+  height: 36px;
+  width: 36px;
+}
