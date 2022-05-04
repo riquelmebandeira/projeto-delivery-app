@@ -39,7 +39,12 @@ async function register({ name, email, password: pwd }) {
 async function findAll() {
   const users = await User.findAll();
 
-  return users;
+  const usersWithoutPwd = users.map((user) => {
+    const { password, ...data } = user.dataValues;
+    return data;
+  });
+
+  return usersWithoutPwd;
 }
 
 module.exports = {
