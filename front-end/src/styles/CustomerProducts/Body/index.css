@@ -13,10 +13,13 @@ body {
 }
 
 .card-button {
+  align-items: center;
   align-self: flex-end;
+  display: flex;
   font-size: 18px;
   font-weight: 900;
   height: 45px;
+  justify-content: center;
   margin-right: 10%;
   width: 220px;
 }

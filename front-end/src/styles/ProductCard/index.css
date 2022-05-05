@@ -45,6 +45,10 @@
   width: 36px;
 }
 
+.input-container > h5 {
+  margin: 0.1px;
+}
+
 .price-container {
   align-self: 'start';
   display: flex;
