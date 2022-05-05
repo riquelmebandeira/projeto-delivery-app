@@ -9,7 +9,6 @@ import {
 } from '../redux/features/productsSlice';
 
 import Button from './Button';
-import Input from './Input';
 
 import '../styles/ProductCard/index.css';
 
@@ -63,13 +62,13 @@ export default function ProductCard({ dataCard }) {
             dataTestId={ `customer_products__button-card-rm-item-${dataCard.id}` }
           />
 
-          <Input
+          <input
             type="text"
             value={ inputValue }
             labelText="none"
             placeholder="0"
             onChange={ (e) => setInputValue(+e.target.value) }
-            dataTestId={ `customer_products__input-card-quantity-${dataCard.id}` }
+            data-testid={ `customer_products__input-card-quantity-${dataCard.id}` }
           />
 
           <Button

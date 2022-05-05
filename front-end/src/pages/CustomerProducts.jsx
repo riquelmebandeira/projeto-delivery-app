@@ -59,9 +59,7 @@ export default function CustomerProducts() {
 
           </button>
         </Link>
-
       </body>
-
     </>
   );
 }
