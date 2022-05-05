@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import '../styles/NavBar/index.css';
 
 function NavBar(user) {
-  const [sessionUser] = useState(user);
+  const { props: { name } } = user;
 
   const handleLogout = () => {
     localStorage.clear();
@@ -38,7 +39,7 @@ function NavBar(user) {
           data-testid="customer_products__element-navbar-user-full-name"
         >
           <h5>
-            { (sessionUser) ? sessionUser.name : null }
+            { name }
           </h5>
         </div>
 

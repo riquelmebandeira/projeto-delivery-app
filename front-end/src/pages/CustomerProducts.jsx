@@ -32,7 +32,7 @@ export default function CustomerProducts() {
 
   return (
     <>
-      <NavBar />
+      <NavBar props={ sessionUser } />
 
       <body>
 
@@ -61,9 +61,7 @@ export default function CustomerProducts() {
 
           </button>
         </Link>
-
       </body>
-
     </>
   );
 }

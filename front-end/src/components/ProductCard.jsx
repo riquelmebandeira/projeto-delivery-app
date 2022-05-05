@@ -9,7 +9,6 @@ import {
 } from '../redux/features/productsSlice';
 
 import Button from './Button';
-import Input from './Input';
 
 import '../styles/ProductCard/index.css';
 
@@ -31,25 +30,22 @@ export default function ProductCard({ dataCard }) {
   };
 
   return (
-    <div
-      className="card-container"
-      style={ { backgroundImage: `url(${dataCard.url_image})` } }
-      data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
-    >
-      <div style={ { alignSelf: 'start', fontSize: 20 } }>
-        <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
-          R$
-          { dataCard.value }
-        </h5>
-      </div>
+    <div className="card-container">
+      <img
+        src={ dataCard.url_image }
+        alt={ dataCard.name }
+        data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
+      />
+      <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
+        R$
+        { dataCard.price }
+      </h5>
 
       <div className="input-container">
         <h5 data-testid={ `customer_products__element-card-title-${dataCard.id}` }>
           { dataCard.name }
         </h5>
-
-        <div style={ { marginLeft: 45 } }>
-
+        <div className="input-group">
           <Button
             text="-"
             type="button"
@@ -58,12 +54,12 @@ export default function ProductCard({ dataCard }) {
             dataTestId={ `customer_products__button-card-rm-item-${dataCard.id}` }
           />
 
-          <Input
+          <input
             type="text"
             value={ inputValue }
             placeholder="0"
             onChange={ (e) => setInputValue(+e.target.value) }
-            dataTestId={ `customer_products__input-card-quantity-${dataCard.id}` }
+            data-testid={ `customer_products__input-card-quantity-${dataCard.id}` }
           />
 
           <Button

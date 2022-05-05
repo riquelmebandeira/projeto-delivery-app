@@ -3,15 +3,6 @@ body {
   flex-direction: column;
 }
 
-.products-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: auto;
-  margin-top: 40px;
-  width: 80%;
-}
-
 .card-button {
   align-self: flex-end;
   font-size: 18px;
@@ -19,4 +10,35 @@ body {
   height: 45px;
   margin-right: 10%;
   width: 220px;
+}
+
+.card-container {
+  height: 400px;
+}
+
+img {
+  max-height: 200px;
+}
+
+.input-container {
+  align-items: center;
+  display: flex;
+  height: 300px;
+  text-align: center;
+}
+
+.input-group {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  margin-top: 40px;
+  width: 80%;
 }
