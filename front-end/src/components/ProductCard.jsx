@@ -31,27 +31,32 @@ export default function ProductCard({ dataCard }) {
   };
 
   return (
-    <div
-      className="card-container"
-      style={ { backgroundImage: `url(${dataCard.url_image})` } }
-      data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
-    >
-      <div style={ { alignSelf: 'start', fontSize: 20 } }>
-        <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
-          R$
-          { dataCard.value }
-        </h5>
+    <div className="card-container">
+      <div>
+        <img
+          className="card-image"
+          src={ dataCard.image }
+          alt={ dataCard.name }
+          data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
+        />
+        <div className="price-container">
+          <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
+            R$
+            { dataCard.value }
+          </h5>
+        </div>
       </div>
 
-      <div className="input-container">
+      <div className="product-controls">
         <h5 data-testid={ `customer_products__element-card-title-${dataCard.id}` }>
           { dataCard.name }
         </h5>
 
-        <div style={ { marginLeft: 45 } }>
+        <div className="input-container">
 
           <Button
             text="-"
+            value="-"
             type="button"
             disabled={ false }
             onClick={ handleDecrement }
@@ -61,6 +66,7 @@ export default function ProductCard({ dataCard }) {
           <Input
             type="text"
             value={ inputValue }
+            labelText="none"
             placeholder="0"
             onChange={ (e) => setInputValue(+e.target.value) }
             dataTestId={ `customer_products__input-card-quantity-${dataCard.id}` }
@@ -68,6 +74,7 @@ export default function ProductCard({ dataCard }) {
 
           <Button
             text="+"
+            value="+"
             type="button"
             disabled={ false }
             onClick={ handleIncrement }

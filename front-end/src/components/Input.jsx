@@ -3,9 +3,18 @@ import PropTypes from 'prop-types';
 
 const Input = (props) => {
   const { labelText, onChange, dataTestId, placeHolder, type, value } = props;
-  return (
+
+  const labelRender = () => (
     <label htmlFor={ labelText }>
       <h5>{ labelText }</h5>
+    </label>
+  );
+
+  return (
+    <>
+      { labelText === 'none'
+        ? null
+        : labelRender() }
       <input
         value={ value }
         type={ type }
@@ -13,7 +22,7 @@ const Input = (props) => {
         data-testid={ dataTestId }
         placeholder={ placeHolder }
       />
-    </label>
+    </>
   );
 };
 
