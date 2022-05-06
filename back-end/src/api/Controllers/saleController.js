@@ -25,8 +25,18 @@ async function findOne(req, res) {
   return res.status(utils.HTTP_OK_STATUS).json(sale);
 }
 
+async function update(req, res) {
+  const { id } = req.params;
+  const { role } = req.user;
+
+  const updated = await saleService.update(id, role);
+
+  return res.status(utils.HTTP_OK_STATUS).json(updated);
+}
+
 module.exports = {
   findAll,
   create,
   findOne,
+  update,
   };
