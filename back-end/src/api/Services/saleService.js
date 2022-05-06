@@ -33,22 +33,23 @@ async function findOne(id) {
   });
 }
 
-async function updateOne(id, userRole) {
+async function update(id, userRole) {
   const sale = await Sale.findOne({ where: { id } });
 
-  if (userRole === 'customer' && sale.status === 'Em trânsito') {
+  if (userRole === 'customer' && sale.status === 'Em Trânsito') {
     await Sale.update({ status: 'Entregue' }, { where: { id } });
   }
+  
+  const newStatus = sale.status === 'Pendente' ? 'Preparando' : 'Em Trânsito'; 
 
-  if (userRole === 'seller') {
-    const newStatus = sale.status === 'Pendente' ? 'Preparando' : 'Em Trânsito'; 
-    await Sale.update({ status: newStatus }, { where: { id } });
-  }
+  await Sale.update({ status: newStatus }, { where: { id } });
+
+  return Sale.findOne({ where: { id } });
 }
 
 module.exports = {
   findAll,
   create,
   findOne,
-  updateOne,
+  update,
 };
