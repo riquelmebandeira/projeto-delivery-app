@@ -1,4 +1,4 @@
-const { Sale, SaleProduct } = require('../../database/models');
+const { Sale, SaleProduct, User, Product } = require('../../database/models');
 
 async function findAll() {
   return Sale.findAll();
@@ -24,7 +24,17 @@ async function create(data) {
   return newSale.dataValues;
 }
 
+async function findOne(id) {
+  return Sale.findOne({ where: { id },
+    include: [
+    { model: User, as: 'seller', attributes: ['name'] },
+    { model: Product, as: 'products' },
+    ], 
+  });
+}
+
 module.exports = {
   findAll,
   create,
+  findOne,
 };
