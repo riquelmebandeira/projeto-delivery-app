@@ -40,9 +40,9 @@ async function login({ email, password }) {
     throw e;
   }
 
-  console.log(utils.JWT_SECRET);
+  const { password: pwd, ...userInfo } = user;
 
-  return jwt.sign(user, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
+  return jwt.sign(userInfo, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
 }
 
 module.exports = {
