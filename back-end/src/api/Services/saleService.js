@@ -27,14 +27,28 @@ async function create(data) {
 async function findOne(id) {
   return Sale.findOne({ where: { id },
     include: [
-    { model: User, as: 'seller', attributes: ['name'] },
-    { model: Product, as: 'products' },
+      { model: User, as: 'seller', attributes: ['name'] },
+      { model: Product, as: 'products' },
     ], 
   });
+}
+
+async function updateOne(id, userRole) {
+  const sale = await Sale.findOne({ where: { id } });
+
+  if (userRole === 'customer' && sale.status === 'Em trânsito') {
+    await Sale.update({ status: 'Entregue' }, { where: { id } });
+  }
+
+  if (userRole === 'seller') {
+    const newStatus = sale.status === 'Pendente' ? 'Preparando' : 'Em Trânsito'; 
+    await Sale.update({ status: newStatus }, { where: { id } });
+  }
 }
 
 module.exports = {
   findAll,
   create,
   findOne,
+  updateOne,
 };
