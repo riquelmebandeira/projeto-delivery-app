@@ -19,7 +19,7 @@ const Login = () => {
       const { token } = await requestLogin(endpoint, { email, password });
       const decoded = jwtDecode(token);
       setRole(decoded.role);
-      localStorage.setItem('user', JSON.stringify({ token, ...decoded }));
+      localStorage.setItem('user', JSON.stringify({ token, user: decoded }));
       setIsLogged(true);
     } catch (error) {
       console.log(error);

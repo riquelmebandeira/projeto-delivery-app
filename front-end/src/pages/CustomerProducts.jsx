@@ -13,6 +13,7 @@ export default function CustomerProducts() {
   const [sessionUser, setSessionUser] = useState('');
 
   const totalValue = useSelector((state) => state.products.totalValue);
+  const priceRender = (price) => price.replace('.', ',');
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -54,7 +55,7 @@ export default function CustomerProducts() {
           >
             <h5>Ver carrinho: R$:</h5>
             <span data-testid="customer_products__checkout-bottom-value">
-              { totalValue }
+              { totalValue && priceRender(totalValue) }
             </span>
 
           </button>
