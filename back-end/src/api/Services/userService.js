@@ -47,8 +47,13 @@ async function findAll() {
   return usersWithoutPwd;
 }
 
+async function destroy(id) {
+  return User.destroy({ where: { id } });
+}
+
 module.exports = {
   validate,
   register,
   findAll,
+  destroy,
 };

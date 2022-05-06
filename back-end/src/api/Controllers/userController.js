@@ -20,8 +20,22 @@ async function findAll(_req, res) {
   res.status(utils.HTTP_OK_STATUS).json(users);
 }
 
+async function destroy(req, res) {
+  const { role } = req.user;
+  const { id } = req.params;
+
+  if (role !== 'administrator') { 
+    return res.status(utils.HTTP_UNAUTHORIZED_STATUS).json(utils.MESSAGES.UNAUTHORIZED_USER); 
+  }
+
+  await userService.destroy(id);
+
+  return res.status(utils.HTTP_OK_NO_CONTENT_STATUS).json();
+}
+
 module.exports = {
   validate,
   register,
   findAll,
+  destroy,
 };
