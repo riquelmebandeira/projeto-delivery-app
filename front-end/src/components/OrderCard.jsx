@@ -20,7 +20,7 @@ export default function OrderCard(props) {
         <h4 data-testid={ `customer_orders__element-order-id-${id}` }>
           {new Date(saleDate).toLocaleDateString()}
         </h4>
-  
+
         <h4>
           {totalPrice}
         </h4>
