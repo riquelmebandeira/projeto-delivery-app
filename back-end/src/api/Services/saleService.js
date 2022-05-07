@@ -1,7 +1,7 @@
 const { Sale, SaleProduct, User, Product } = require('../../database/models');
 
-async function findAll() {
-  return Sale.findAll();
+async function findAll(userId) {
+  return Sale.findAll({ where: { userId } });
 }
 
 async function create(data) {
