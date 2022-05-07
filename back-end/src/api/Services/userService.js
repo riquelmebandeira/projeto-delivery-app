@@ -36,7 +36,24 @@ async function register({ name, email, password: pwd }) {
   return jwt.sign(userInfo, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
 }
 
+async function findAll() {
+  const users = await User.findAll();
+
+  const usersWithoutPwd = users.map((user) => {
+    const { password, ...data } = user.dataValues;
+    return data;
+  });
+
+  return usersWithoutPwd;
+}
+
+async function destroy(id) {
+  return User.destroy({ where: { id } });
+}
+
 module.exports = {
   validate,
   register,
+  findAll,
+  destroy,
 };

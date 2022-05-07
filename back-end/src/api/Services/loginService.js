@@ -41,9 +41,11 @@ async function login({ email, password }) {
     throw e;
   }
 
+  const { password: pwd, ...userInfo } = user;
+
   const secret = await fs.readFile('jwt.evaluation.key', 'utf-8');
 
-  return jwt.sign(user, secret, { expiresIn: '1d', algorithm: 'HS256' });
+  return jwt.sign(userInfo, secret, { expiresIn: '1d', algorithm: 'HS256' });
 }
 
 module.exports = {
