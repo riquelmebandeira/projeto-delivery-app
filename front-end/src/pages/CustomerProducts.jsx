@@ -10,13 +10,16 @@ import '../styles/CustomerProducts/Body/index.css';
 
 export default function CustomerProducts() {
   const [products, setProducts] = useState([]);
+  const [sessionUser, setSessionUser] = useState([]);
 
   const totalValue = useSelector((state) => state.products.totalValue);
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
-    console.log(userStorage);
+
     const { token } = userStorage;
+
+    setSessionUser(userStorage);
 
     const getProducts = async () => {
       const endpoint = '/products';
