@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { utils } = require('../../utils');
 const loginSchema = require('../../Schemas/loginSchema');
 const { User } = require('../../database/models');
+const fs = require('fs/promises');
 
 async function validate(loginInfo) {
   const { error } = await loginSchema.validate(loginInfo);
@@ -40,9 +41,9 @@ async function login({ email, password }) {
     throw e;
   }
 
-  console.log(utils.JWT_SECRET);
+  const secret = await fs.readFile('jwt.evaluation.key', 'utf-8');
 
-  return jwt.sign(user, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
+  return jwt.sign(user, secret, { expiresIn: '1d', algorithm: 'HS256' });
 }
 
 module.exports = {
