@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  incrementQuantity,
-  decrementQuantity,
-  incrementValue,
-} from '../redux/features/productsSlice';
+import { handleCartProduct } from '../redux/features/productsSlice';
 
 import Button from './Button';
 
@@ -18,15 +14,29 @@ export default function ProductCard({ dataCard }) {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity());
-    dispatch(incrementValue(inputValue >= 0 ? dataCard.price : null));
-    setInputValue(inputValue >= 0 ? inputValue + 1 : inputValue);
+    const product = { ...dataCard, quantity: inputValue + 1 };
+
+    dispatch(handleCartProduct(product));
+
+    setInputValue(inputValue + 1);
+  };
+
+  const handleChange = (quantity) => {
+    const product = { ...dataCard, quantity };
+
+    dispatch(handleCartProduct(product));
+
+    setInputValue(quantity);
   };
 
   const handleDecrement = () => {
-    dispatch(inputValue <= 0 ? null : decrementQuantity());
-    dispatch(incrementValue(inputValue <= 0 ? null : dataCard.price));
-    setInputValue(inputValue <= 0 ? inputValue : inputValue - 1);
+    if (inputValue > 0) {
+      const product = { ...dataCard, quantity: inputValue - 1 };
+
+      dispatch(handleCartProduct(product));
+
+      setInputValue(inputValue - 1);
+    }
   };
 
   return (
@@ -36,9 +46,9 @@ export default function ProductCard({ dataCard }) {
         alt={ dataCard.name }
         data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
       />
+      {/* R$ */}
       <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
-        R$
-        { dataCard.price }
+        { dataCard.price.replace(/\./, ',') }
       </h5>
 
       <div className="input-container">
@@ -58,7 +68,7 @@ export default function ProductCard({ dataCard }) {
             type="text"
             value={ inputValue }
             placeholder="0"
-            onChange={ (e) => setInputValue(+e.target.value) }
+            onChange={ (e) => handleChange(+e.target.value) }
             data-testid={ `customer_products__input-card-quantity-${dataCard.id}` }
           />
 

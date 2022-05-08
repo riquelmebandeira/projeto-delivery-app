@@ -12,7 +12,8 @@ export default function CustomerProducts() {
   const [products, setProducts] = useState([]);
   const [sessionUser, setSessionUser] = useState([]);
 
-  const totalValue = useSelector((state) => state.products.totalValue);
+  const totalValue = useSelector((state) => state.products.totalPrice);
+  const cartProducts = useSelector((state) => state.products.cart);
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -40,9 +41,9 @@ export default function CustomerProducts() {
         <div className="products-container">
 
           {
-            (products) ? products.map((product, index) => (
+            (products) && products.map((product, index) => (
               <ProductCard key={ index } dataCard={ product } />
-            )) : null
+            ))
           }
 
         </div>
@@ -52,12 +53,12 @@ export default function CustomerProducts() {
             type="button"
             className="card-button"
             data-testid="customer_products__button-cart"
-            disabled={ products.length === 0 }
+            disabled={ cartProducts.length === 0 }
           >
 
+            {/* Ver carrinho: R$ */}
             <p data-testid="customer_products__checkout-bottom-value">
-              Ver carrinho: R$
-              { totalValue }
+              { totalValue.replace(/\./, ',') }
             </p>
 
           </button>
