@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { requestProducts } from '../services/requests';
+import { requestData as requestProducts } from '../services/requests';
 
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';

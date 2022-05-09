@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import OrderCard from '../components/OrderCard';
 import '../styles/CustomerOrders.css';
-import { requestProducts as requestOrders } from '../services/requests';
+import { requestData as requestOrders } from '../services/requests';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
