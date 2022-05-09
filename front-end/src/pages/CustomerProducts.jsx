@@ -12,12 +12,12 @@ export default function CustomerProducts() {
   const [products, setProducts] = useState([]);
   const [sessionUser, setSessionUser] = useState('');
 
-  const totalValue = useSelector((state) => state.products.totalValue);
-  const priceRender = (price) => price.replace('.', ',');
+  const totalValue = useSelector((state) => state.products.totalPrice);
+  const cartProducts = useSelector((state) => state.products.cart);
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
-    console.log(userStorage);
+
     const { token } = userStorage;
     setSessionUser(userStorage);
     const getProducts = async () => {
@@ -39,9 +39,9 @@ export default function CustomerProducts() {
         <div className="products-container">
 
           {
-            (products) ? products.map((product, index) => (
+            (products) && products.map((product, index) => (
               <ProductCard key={ index } dataCard={ product } />
-            )) : null
+            ))
           }
 
         </div>
@@ -51,13 +51,12 @@ export default function CustomerProducts() {
             type="button"
             className="card-button"
             data-testid="customer_products__button-cart"
-            disabled={ products.length === 0 }
+            disabled={ cartProducts.length === 0 }
           >
-            <h5>Ver carrinho: R$:</h5>
-            <span data-testid="customer_products__checkout-bottom-value">
-              { totalValue && priceRender(totalValue) }
-            </span>
-
+            {/* Ver carrinho: R$ */}
+            <p data-testid="customer_products__checkout-bottom-value">
+              { totalValue.replace(/\./, ',') }
+            </p>
           </button>
         </Link>
       </body>

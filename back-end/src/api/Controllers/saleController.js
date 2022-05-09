@@ -1,17 +1,44 @@
-const { Router } = require('express');
-const rescue = require('express-rescue');
-
 const saleService = require('../Services/saleService');
 const { utils } = require('../../utils');
-const validateJWT = require('../../utils/validateJWT');
 
-async function findAll(_req, res) {
-  const sales = await saleService.findAll();
+async function findAll(req, res) {
+  const { id } = req.user;
+
+  const sales = await saleService.findAll(id);
 
   return res.status(utils.HTTP_OK_STATUS).json(sales);
 }
 
-const router = Router();
+async function create(req, res) {
+  const { id: userId } = req.user;
 
-module.exports = router
-  .get('/', rescue(validateJWT), rescue(findAll));
+  const saleData = { userId, ...req.body };
+
+  const newSale = await saleService.create(saleData);
+
+  return res.status(utils.HTTP_CREATED_STATUS).json(newSale);
+}
+
+async function findOne(req, res) {
+  const { id } = req.params;
+
+  const sale = await saleService.findOne(id);
+
+  return res.status(utils.HTTP_OK_STATUS).json(sale);
+}
+
+async function update(req, res) {
+  const { id } = req.params;
+  const { role } = req.user;
+
+  const updated = await saleService.update(id, role);
+
+  return res.status(utils.HTTP_OK_STATUS).json(updated);
+}
+
+module.exports = {
+  findAll,
+  create,
+  findOne,
+  update,
+  };
