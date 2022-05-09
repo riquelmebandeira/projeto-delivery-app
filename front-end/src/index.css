@@ -7,6 +7,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  background-color: #0d6750;
+  border-radius: 5px;
+  color: white;
+  height: 36px;
+  min-width: fit-content;
+  width: 36px;
+}
+
+input {
+  border-radius: 5px;
+  text-align: center;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

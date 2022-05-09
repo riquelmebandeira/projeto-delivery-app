@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import '../styles/NavBar/index.css';
 
-function NavBar(user) {
-  const { props: { name } } = user;
+function NavBar(props) {
+  const { props: { name } } = props;
 
   const handleLogout = () => {
     localStorage.clear();
@@ -57,5 +57,11 @@ function NavBar(user) {
     </nav>
   );
 }
+
+NavBar.propTypes = {
+  props: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
+};
 
 export default NavBar;

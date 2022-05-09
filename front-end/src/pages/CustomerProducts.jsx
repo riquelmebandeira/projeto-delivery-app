@@ -10,7 +10,7 @@ import '../styles/CustomerProducts/Body/index.css';
 
 export default function CustomerProducts() {
   const [products, setProducts] = useState([]);
-  const [sessionUser, setSessionUser] = useState([]);
+  const [sessionUser, setSessionUser] = useState('');
 
   const totalValue = useSelector((state) => state.products.totalPrice);
   const cartProducts = useSelector((state) => state.products.cart);
@@ -19,9 +19,7 @@ export default function CustomerProducts() {
     const userStorage = JSON.parse(localStorage.getItem('user'));
 
     const { token } = userStorage;
-
     setSessionUser(userStorage);
-
     const getProducts = async () => {
       const endpoint = '/products';
       const response = await requestProducts(endpoint, token);
@@ -55,12 +53,10 @@ export default function CustomerProducts() {
             data-testid="customer_products__button-cart"
             disabled={ cartProducts.length === 0 }
           >
-
             {/* Ver carrinho: R$ */}
             <p data-testid="customer_products__checkout-bottom-value">
               { totalValue.replace(/\./, ',') }
             </p>
-
           </button>
         </Link>
       </body>

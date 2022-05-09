@@ -51,13 +51,16 @@ export default function ProductCard({ dataCard }) {
         { dataCard.price.replace(/\./, ',') }
       </h5>
 
-      <div className="input-container">
+      <div className="product-controls">
         <h5 data-testid={ `customer_products__element-card-title-${dataCard.id}` }>
           { dataCard.name }
         </h5>
-        <div className="input-group">
+
+        <div className="input-container">
+
           <Button
             text="-"
+            value="-"
             type="button"
             disabled={ false }
             onClick={ handleDecrement }
@@ -67,6 +70,7 @@ export default function ProductCard({ dataCard }) {
           <input
             type="text"
             value={ inputValue }
+            labelText="none"
             placeholder="0"
             onChange={ (e) => handleChange(+e.target.value) }
             data-testid={ `customer_products__input-card-quantity-${dataCard.id}` }
@@ -74,6 +78,7 @@ export default function ProductCard({ dataCard }) {
 
           <Button
             text="+"
+            value="+"
             type="button"
             disabled={ false }
             onClick={ handleIncrement }
