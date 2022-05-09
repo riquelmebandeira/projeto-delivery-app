@@ -9,7 +9,7 @@ const router = Router();
 
 router.post('/', rescue(validate), rescue(register));
 router.get('/', rescue(validateJWT), rescue(findAll));
-router.get('/', rescue(validateJWT), rescue(findAllSellers));
+router.get('/sellers', rescue(validateJWT), rescue(findAllSellers));
 router.delete('/:id', rescue(validateJWT), rescue(destroy));
 
 module.exports = router;
