@@ -3,7 +3,17 @@ import '../styles/OrderCard.css';
 import PropTypes from 'prop-types';
 
 export default function OrderCard(props) {
-  const { cardData: { id, status, saleDate, totalPrice } } = props;
+  const {
+    user,
+    cardData: {
+      id,
+      status,
+      saleDate,
+      totalPrice,
+      deliveryAddress,
+      deliveryNumber,
+    },
+  } = props;
 
   return (
     <div className="order-card">
@@ -25,12 +35,23 @@ export default function OrderCard(props) {
           {totalPrice}
         </h4>
       </div>
-
+      {
+        user.role === 'seller' && (
+          <p
+            data-testid={ `seller_orders__element-card-address-${id}` }
+          >
+            { [deliveryAddress, deliveryNumber] }
+          </p>
+        )
+      }
     </div>
   );
 }
 
 OrderCard.propTypes = {
+  user: PropTypes.shape({
+    role: PropTypes.string.isRequired,
+  }).isRequired,
   cardData: PropTypes.shape({
     deliveryAddress: PropTypes.string,
     deliveryNumber: PropTypes.string,
