@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
+const fs = require('fs/promises');
 const { User } = require('../database/models');
-const { utils } = require('./index');
 const { ERR_CODES, MESSAGES } = require('./utils');
 
 module.exports = async (req, res, next) => {
@@ -11,11 +11,11 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const verified = jwt.verify(token, utils.JWT_SECRET);
+    const secret = await fs.readFile('jwt.evaluation.key', 'utf-8');
 
-    const { email } = verified;
+    const verified = jwt.verify(token, secret);
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email: verified.email } });
 
     if (!user) {  
       return res
