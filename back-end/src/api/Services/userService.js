@@ -47,6 +47,17 @@ async function findAll() {
   return usersWithoutPwd;
 }
 
+async function findSellers() {
+  const users = await User.findAll({ where: { role: 'seller' } });
+
+  const usersWithoutPwd = users.map((user) => {
+    const { password, ...data } = user.dataValues;
+    return data;
+  });
+
+  return usersWithoutPwd;
+}
+
 async function destroy(id) {
   return User.destroy({ where: { id } });
 }
@@ -55,5 +66,6 @@ module.exports = {
   validate,
   register,
   findAll,
+  findSellers,
   destroy,
 };
