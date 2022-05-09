@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../components/NavBar';
 import OrderCard from '../components/OrderCard';
-import '../styles/CustomerOrders.css';
 import { requestProducts as requestOrders } from '../services/requests';
 
-export default function CustomerOrders() {
+import '../styles/CustomerOrders.css';
+
+export default function Orders() {
   const [orders, setOrders] = useState([]);
-  const [sessionUser, setSessionUser] = useState(false);
+  const [sessionUser, setSessionUser] = useState('');
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
@@ -30,7 +31,7 @@ export default function CustomerOrders() {
         <div className="orders-container">
           {
             (orders.length > 0) && orders.map((order, index) => (
-              <OrderCard key={ index } cardData={ order } />
+              <OrderCard key={ index } cardData={ order } user={ sessionUser } />
             ))
           }
         </div>
