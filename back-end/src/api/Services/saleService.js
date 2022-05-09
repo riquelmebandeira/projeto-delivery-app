@@ -1,7 +1,11 @@
 const { Sale, SaleProduct, User, Product } = require('../../database/models');
 
-async function findAll(userId) {
+async function findAllCustomer(userId) {
   return Sale.findAll({ where: { userId } });
+}
+
+async function findAllSeller(sellerId) {
+  return Sale.findAll({ where: { sellerId } });
 }
 
 async function create(data) {
@@ -48,7 +52,8 @@ async function update(id, userRole) {
 }
 
 module.exports = {
-  findAll,
+  findAllCustomer,
+  findAllSeller,
   create,
   findOne,
   update,
