@@ -1,9 +1,9 @@
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const fs = require('fs/promises');
 const { utils } = require('../../utils');
 const loginSchema = require('../../Schemas/loginSchema');
 const { User } = require('../../database/models');
-const fs = require('fs/promises');
 
 async function validate(loginInfo) {
   const { error } = await loginSchema.validate(loginInfo);
@@ -31,8 +31,6 @@ async function login({ email, password }) {
   user = user.dataValues;
 
   const encrypted = md5(password);
-
-  console.log(encrypted);
 
   if (user.password !== encrypted) {
     const e = new Error();
