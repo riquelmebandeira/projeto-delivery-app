@@ -23,14 +23,12 @@ export default function Table(props) {
 
   return (
     <table>
-      <thead>
+      <tbody>
         <tr>
           { columns.map((column, i) => (
-            <th key={ i }>{column}</th>
+            <th key={ i + 1 }>{column}</th>
           ))}
         </tr>
-      </thead>
-      <tbody>
         { cartProducts.map((row, i) => {
           const products = Object.entries(row);
           const productColumns = [
@@ -41,12 +39,14 @@ export default function Table(props) {
             ],
           ];
           return (
-            <tr key={ i }>
+            <tr key={ i + 1 }>
               <td
-                key={ i }
-                data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
+                key={ i + 1 }
+                data-testid={
+                  `customer_checkout__element-order-table-item-number-${i + 1}`
+                }
               >
-                { i }
+                { i + 1 }
               </td>
               {productColumns.map(([key, value]) => (
                 <td
