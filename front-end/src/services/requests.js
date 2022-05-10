@@ -19,4 +19,10 @@ export const requestData = async (endpoint, token) => {
   return data;
 };
 
+export const postOrders = async (endpoint, token, body) => {
+  setToken(token);
+  const { data } = await api.post(endpoint, body);
+  return data;
+};
+
 export default api;

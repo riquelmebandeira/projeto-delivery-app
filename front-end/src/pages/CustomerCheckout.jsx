@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import Input from '../components/Input';
+import Button from '../components/Button';
 import '../styles/CustomerCheckout.css';
-import { requestData as requestSellers } from '../services/requests';
+import { requestData as requestSellers, postOrders } from '../services/requests';
 import { handleNewPage } from '../redux/features/productsSlice';
 
 export default function CustomerCheckout() {
@@ -12,8 +13,21 @@ export default function CustomerCheckout() {
   const [sellers, setSellers] = useState([]);
   const [chckOutInfo, setchckOutInfo] = useState({});
   const totalValue = useSelector((state) => state.products.totalPrice);
+  const cartProducts = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
 
+  submitOrder = async ({ sellerId, deliveryAddress, deliveryNumber }) => {
+    console.log(sellerId, deliveryAddress, deliveryNumber);
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    try {
+      const endpoint = '/sales';
+      await postOrders(endpoint,
+        token,
+        { sellerId, deliveryAddress, deliveryNumber, prodcts: [cartProducts] });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
     dispatch(handleNewPage());
@@ -25,7 +39,7 @@ export default function CustomerCheckout() {
       setSellers(response);
     };
     getSellers();
-  }, []);
+  }, [dispatch]);
 
   return (
     <main>
@@ -60,11 +74,11 @@ export default function CustomerCheckout() {
               data-testid="customer_checkout__select-seller"
               name="Seller"
               onChange={ ({ target }) => {
-                setchckOutInfo({ ...chckOutInfo, seller: target.value });
+                setchckOutInfo({ ...chckOutInfo, sellerId: target.value });
               } }
             >
               { sellers.map((seller, index) => (
-                <option key={ index } value={ seller.name }>{ seller.name }</option>
+                <option key={ index } value={ seller.id }>{ seller.name }</option>
               ))}
             </select>
           </label>
@@ -73,7 +87,7 @@ export default function CustomerCheckout() {
           <Input
             labelText="Endereço:"
             onChange={ ({ target }) => {
-              setchckOutInfo({ ...chckOutInfo, address: target.value });
+              setchckOutInfo({ ...chckOutInfo, deliveryAddress: target.value });
             } }
             dataTestId="customer_checkout__input-address"
             placeHolder="Rua,Bairro e Cidade"
@@ -84,7 +98,7 @@ export default function CustomerCheckout() {
           <Input
             labelText="Número:"
             onChange={ ({ target }) => {
-              setchckOutInfo({ ...chckOutInfo, addressNum: target.value });
+              setchckOutInfo({ ...chckOutInfo, deliveryNumber: target.value });
             } }
             dataTestId="customer_checkout__input-addressNumber"
             placeHolder="Rua,Bairro e Cidade"
@@ -92,6 +106,13 @@ export default function CustomerCheckout() {
           />
         </div>
       </div>
+      <Button
+        text="Finalizar Pedido"
+        onClick={ () => { submitOrder(chckOutInfo); } }
+        dataTestId="customer_checkout__button-submit-order"
+        disabled={ false }
+        className="button-submit-order"
+      />
     </main>
   );
 }
