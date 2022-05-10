@@ -20,7 +20,7 @@ export default function CustomerProducts() {
 
     const { token } = userStorage;
     setSessionUser(userStorage);
-    console.log(userStorage);
+
     const getProducts = async () => {
       const endpoint = '/products';
       const response = await requestProducts(endpoint, token);
@@ -33,7 +33,7 @@ export default function CustomerProducts() {
 
   return (
     <>
-      <NavBar props={ sessionUser } />
+      {sessionUser && <NavBar props={ sessionUser.user } />}
 
       <body>
 

@@ -25,7 +25,7 @@ export default function CustomerOrders() {
 
   return (
     <>
-      <NavBar props={ sessionUser } />
+      {sessionUser && <NavBar props={ sessionUser.user } />}
       <body>
         <div className="orders-container">
           {
