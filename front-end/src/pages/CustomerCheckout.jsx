@@ -56,7 +56,7 @@ export default function CustomerCheckout() {
           <label htmlFor="Seller">
             P.Vendedora Responsável:
             <select
-              dataTestId="customer_checkout__select-seller"
+              data-testid="customer_checkout__select-seller"
               name="Seller"
               onChange={ ({ target }) => {
                 setchckOutInfo({ ...chckOutInfo, seller: target.value });
