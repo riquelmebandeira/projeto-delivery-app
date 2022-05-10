@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import Input from '../components/Input';
@@ -12,22 +13,20 @@ export default function CustomerCheckout() {
   const [sessionUser, setSessionUser] = useState('');
   const [sellers, setSellers] = useState([]);
   const [chckOutInfo, setchckOutInfo] = useState({});
+  const [submited, setSubmited] = useState(false);
   const totalValue = useSelector((state) => state.products.totalPrice);
   const cartProducts = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
 
-  const submitOrder = async ({
-    sellerId = sellers[0].id,
-    deliveryAddress,
-    deliveryNumber,
-  }) => {
-    console.log(sellerId, deliveryAddress, deliveryNumber);
+  const submitOrder = async ({ sellerId = sellers[0].id,
+    deliveryAddress, deliveryNumber }) => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     try {
       const endpoint = '/sales';
-      await postOrders(endpoint,
+      const { id } = await postOrders(endpoint,
         token,
         { sellerId, deliveryAddress, deliveryNumber, products: cartProducts });
+      setSubmited(id);
     } catch (error) {
       console.log(error);
     }
@@ -45,6 +44,8 @@ export default function CustomerCheckout() {
     };
     getSellers();
   }, [dispatch]);
+
+  if (submited) return <Navigate to={ `/customer/orders/${submited}` } />;
 
   return (
     <main>
