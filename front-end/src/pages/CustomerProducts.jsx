@@ -20,6 +20,7 @@ export default function CustomerProducts() {
 
     const { token } = userStorage;
     setSessionUser(userStorage);
+
     const getProducts = async () => {
       const endpoint = '/products';
       const response = await requestProducts(endpoint, token);
@@ -28,11 +29,12 @@ export default function CustomerProducts() {
     };
 
     getProducts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
-      <NavBar props={ sessionUser } />
+      <NavBar props={ sessionUser.user } />
 
       <body>
 
