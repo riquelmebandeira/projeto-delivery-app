@@ -16,7 +16,11 @@ export default function CustomerCheckout() {
   const cartProducts = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
 
-  const submitOrder = async ({ sellerId = sellers[0].id, deliveryAddress, deliveryNumber }) => {
+  const submitOrder = async ({
+    sellerId = sellers[0].id,
+    deliveryAddress,
+    deliveryNumber,
+  }) => {
     console.log(sellerId, deliveryAddress, deliveryNumber);
     const { token } = JSON.parse(localStorage.getItem('user'));
     try {
