@@ -1,0 +1,29 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+.Checkout-Input {
+  display: flex;
+}
+
+.checkout-info {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  display: flex;
+  flex-direction: column;
+}
+
+tr {
+  display: flex;
+  justify-content: space-around;
+}
+
+td, th {
+  display: flex;
+  flex-direction: row;
+  margin-inline: auto;
+}

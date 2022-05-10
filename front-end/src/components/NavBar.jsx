@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import '../styles/NavBar/index.css';
 
 function NavBar(props) {
+  console.log(props);
   const { props: { name } } = props;
-
   const handleLogout = () => {
     localStorage.clear();
   };

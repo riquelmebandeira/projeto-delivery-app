@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { requestProducts } from '../services/requests';
+import { requestData as requestProducts } from '../services/requests';
 
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
@@ -20,6 +20,7 @@ export default function CustomerProducts() {
 
     const { token } = userStorage;
     setSessionUser(userStorage);
+
     const getProducts = async () => {
       const endpoint = '/products';
       const response = await requestProducts(endpoint, token);
@@ -32,7 +33,7 @@ export default function CustomerProducts() {
 
   return (
     <>
-      <NavBar props={ sessionUser } />
+      {sessionUser && <NavBar props={ sessionUser } />}
 
       <body>
 

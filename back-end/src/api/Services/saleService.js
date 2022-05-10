@@ -11,7 +11,7 @@ async function findAllSeller(sellerId) {
 async function create(data) {
   const { products, userId, sellerId, deliveryAddress, deliveryNumber } = data;
 
-  let totalPrice = products.reduce((sum, product) => sum + (+product.price), 0);
+  let totalPrice = products.reduce((sum, product) => sum + (+product.price * product.quantity), 0);
 
   totalPrice = totalPrice.toFixed(2);
 

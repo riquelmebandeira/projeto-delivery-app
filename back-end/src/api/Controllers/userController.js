@@ -20,6 +20,12 @@ async function findAll(_req, res) {
   res.status(utils.HTTP_OK_STATUS).json(users);
 }
 
+async function findAllSellers(_req, res) {
+  const users = await userService.findAllSellers();
+
+  res.status(utils.HTTP_OK_STATUS).json(users);
+}
+
 async function destroy(req, res) {
   const { role } = req.user;
   const { id } = req.params;
@@ -37,5 +43,6 @@ module.exports = {
   validate,
   register,
   findAll,
+  findAllSellers,
   destroy,
 };
