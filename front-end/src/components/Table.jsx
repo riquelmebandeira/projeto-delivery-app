@@ -36,15 +36,25 @@ export default function Table(props) {
       <tbody>
         { data.cart.map((row, i) => {
           const products = Object.entries(row);
-          const productColumns = [products[1], products[4], ['unit-price', products[2][1]],
-            ['sub-total', (row.quantity * row.price).toFixed(2)]];
+          const productColumns = [
+            products[1], products[4], ['unit-price', products[2][1]],
+            ['sub-total', (row.quantity * row.price).toFixed(2)]
+          ];
           return (
             <tr key={ i }>
-              <td key={ i } data-testid={ `customer_checkout__element-order-table-item-number-${i}` }>
+              <td 
+                key={ i } 
+                data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
+              >
                 { i }
               </td>
               {productColumns.map(([key, value]) => (
-                <td key={ key } data-testid={ `customer_checkout__element-order-table-${key}-${i}` }>{ (value.toString()).replace(/\./, ',') }</td>
+                <td 
+                  key={ key } 
+                  data-testid={ `customer_checkout__element-order-table-${key}-${i}` }
+                >
+                  { (value.toString()).replace(/\./, ',') }
+                </td>
               ))}
               <td>
                 { buttonText
