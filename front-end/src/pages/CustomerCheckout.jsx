@@ -16,18 +16,19 @@ export default function CustomerCheckout() {
   const cartProducts = useSelector((state) => state.products.cart);
   const dispatch = useDispatch();
 
-  submitOrder = async ({ sellerId, deliveryAddress, deliveryNumber }) => {
+  const submitOrder = async ({ sellerId = sellers[0].id, deliveryAddress, deliveryNumber }) => {
     console.log(sellerId, deliveryAddress, deliveryNumber);
     const { token } = JSON.parse(localStorage.getItem('user'));
     try {
       const endpoint = '/sales';
       await postOrders(endpoint,
         token,
-        { sellerId, deliveryAddress, deliveryNumber, prodcts: [cartProducts] });
+        { sellerId, deliveryAddress, deliveryNumber, products: cartProducts });
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
     dispatch(handleNewPage());
