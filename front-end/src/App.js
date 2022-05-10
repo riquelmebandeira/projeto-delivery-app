@@ -18,7 +18,7 @@ function App() {
       <Route path="/customer/products" element={ <CustomerProducts /> } />
       <Route path="/customer/checkout" element={ <CustomerCheckout /> } />
       <Route path="/customer/orders" element={ <CustomerOrders /> }>
-        <Route path=":orderId" element="<CustomerOrdersDetails />" />
+        <Route path="/customer/orders/:orderId" element="<CustomerOrdersDetails />" />
       </Route>
       <Route exact path="/customer/" element={ <Navigate to="/customer/products" /> } />
       {/* Rota Vendor */}
