@@ -47,7 +47,7 @@ async function findAll() {
   return usersWithoutPwd;
 }
 
-async function findSellers() {
+async function findAllSellers() {
   const users = await User.findAll({ where: { role: 'seller' } });
 
   const usersWithoutPwd = users.map((user) => {
@@ -66,6 +66,6 @@ module.exports = {
   validate,
   register,
   findAll,
-  findSellers,
+  findAllSellers,
   destroy,
 };

@@ -1,28 +1,25 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from './Button';
 import { handleCartProduct } from '../redux/features/productsSlice';
 
 export default function Table(props) {
-  const [data, setData] = useState(JSON.parse(localStorage.getItem('cart')));
+  const cartProducts = useSelector((state) => state.products.cart);
   const { columns, buttonText } = props;
 
   const dispatch = useDispatch();
-  console.log(data);
-  const renderDelButton = (id, index) => (
+  console.log(cartProducts);
+  const renderDelButton = (row, index) => (
+
     <Button
       text={ buttonText }
-      onClick={ () => { dispatch(handleCartProduct(id, 0)); } }
+      onClick={ () => { dispatch(handleCartProduct({ ...row, quantity: 0 })); } }
       dataTestId={ `customer_checkout__element-order-table-remove-${index}` }
       disabled={ false }
       className="btn-danger"
     />
   );
-
-  useEffect(() => {
-    setData(JSON.parse(localStorage.getItem('cart')));
-  }, []);
 
   return (
     <table>
@@ -34,7 +31,7 @@ export default function Table(props) {
         </tr>
       </thead>
       <tbody>
-        { data.cart.map((row, i) => {
+        { cartProducts.map((row, i) => {
           const products = Object.entries(row);
           const productColumns = [
             products[1], products[4], ['unit-price', products[2][1],
@@ -61,7 +58,7 @@ export default function Table(props) {
               ))}
               <td>
                 { buttonText
-                  ? renderDelButton(row.id, i)
+                  ? renderDelButton(row, i)
                   : null}
               </td>
             </tr>

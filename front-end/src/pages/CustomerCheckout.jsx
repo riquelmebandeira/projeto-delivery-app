@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import Input from '../components/Input';
-
 import '../styles/CustomerCheckout.css';
 import { requestData as requestSellers } from '../services/requests';
+import { handleNewPage } from '../redux/features/productsSlice';
 
 export default function CustomerCheckout() {
   const [sessionUser, setSessionUser] = useState('');
   const [sellers, setSellers] = useState([]);
   const [chckOutInfo, setchckOutInfo] = useState({});
-  const [cartUser, setCartUser] = useState('');
+  const totalValue = useSelector((state) => state.products.totalPrice);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
-    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    dispatch(handleNewPage());
     const { token } = userStorage;
     setSessionUser(userStorage);
-    setCartUser(cartStorage);
     const getSellers = async () => {
       const endpoint = '/users/sellers';
       const response = await requestSellers(endpoint, token);
@@ -45,7 +46,7 @@ export default function CustomerCheckout() {
           <h3
             data-testid="customer_checkout__element-order-total-price"
           >
-            { cartUser && cartUser.totalPrice.replace(/\./, ',') }
+            { totalValue && totalValue.replace(/\./, ',') }
           </h3>
         </div>
       </div>
