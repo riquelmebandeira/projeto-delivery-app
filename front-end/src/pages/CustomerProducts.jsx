@@ -33,7 +33,7 @@ export default function CustomerProducts() {
 
   return (
     <>
-      {sessionUser && <NavBar props={ sessionUser.user } />}
+      {sessionUser && <NavBar props={ sessionUser } />}
 
       <body>
 

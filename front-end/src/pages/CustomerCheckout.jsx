@@ -49,7 +49,7 @@ export default function CustomerCheckout() {
 
   return (
     <main>
-      {sessionUser && <NavBar props={ sessionUser.user } />}
+      {sessionUser && <NavBar props={ sessionUser } />}
       <h4 className="Checkout-Title">
         Finalizar pedido
       </h4>

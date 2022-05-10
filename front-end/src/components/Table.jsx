@@ -43,7 +43,7 @@ export default function Table(props) {
               <td
                 key={ i + 1 }
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${i + 1}`
+                  `customer_checkout__element-order-table-item-number-${i}`
                 }
               >
                 { i + 1 }
