@@ -16,7 +16,6 @@ export const requestLogin = async (endpoint, body) => {
 export const requestData = async (endpoint, token) => {
   setToken(token);
   const { data } = await api.get(endpoint);
-
   return data;
 };
 

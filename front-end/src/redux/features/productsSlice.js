@@ -25,6 +25,9 @@ export const productSlicer = createSlice({
       state.cart = [...updatedCart];
 
       state.totalPrice = calculatePrice(state.cart).toFixed(2);
+
+      localStorage.setItem('cart', JSON.stringify({
+        cart: state.cart, totalPrice: state.totalPrice }));
     },
   },
 });
