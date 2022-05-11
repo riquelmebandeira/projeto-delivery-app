@@ -28,11 +28,11 @@ export default function OrderCard(props) {
 
       <div>
         <h4 data-testid={ `customer_orders__element-order-id-${id}` }>
-          {new Date(saleDate).toLocaleDateString()}
+          {new Date(saleDate).toLocaleDateString('pt-BR')}
         </h4>
 
         <h4>
-          {totalPrice}
+          { totalPrice.replace(/\./, ',') }
         </h4>
       </div>
       {
