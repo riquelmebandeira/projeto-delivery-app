@@ -10,11 +10,11 @@
   width: 220px;
 }
 
-a > .card-button {
+/* a > .card-button {
   position: fixed;
   right: 10%;
   top: 80%;
-}
+} */
 
 body {
   display: flex;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import OrderCard from '../components/OrderCard';
 import '../styles/CustomerOrders.css';
@@ -27,13 +28,15 @@ export default function Orders() {
     <>
       {sessionUser && <NavBar props={ sessionUser } />}
       <body>
-        <div className="orders-container">
+        
           {
             (orders.length > 0) && orders.map((order, index) => (
+              <Link to={`/customer/orders/${order.id}`} className="orders-container">
               <OrderCard key={ index } cardData={ order } user={ sessionUser } />
+              </Link>
             ))
           }
-        </div>
+        
       </body>
     </>
   );

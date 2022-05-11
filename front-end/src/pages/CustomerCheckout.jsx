@@ -26,6 +26,8 @@ export default function CustomerCheckout() {
       const { id } = await postOrders(endpoint,
         token,
         { sellerId, deliveryAddress, deliveryNumber, products: cartProducts });
+      localStorage.setItem('cart', JSON.stringify({
+        cart: [], totalPrice: 0 }));
       setSubmited(id);
     } catch (error) {
       console.log(error);
@@ -55,11 +57,13 @@ export default function CustomerCheckout() {
       </h4>
       <div className="checkout-info">
         <Table
+          data={ cartProducts }
           columns={
             ['Item', 'Descrição', 'quantidade',
               'valor unitário', 'Sub-total', 'Remover item']
           }
           buttonText="Remover"
+          dataTestId="customer_checkout__element-order-table-"
         />
         <div className="card-button">
           <h3>Total: R$</h3>

@@ -1,21 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Button from './Button';
 import { handleCartProduct } from '../redux/features/productsSlice';
 
 export default function Table(props) {
-  const cartProducts = useSelector((state) => state.products.cart);
-  const { columns, buttonText } = props;
+  const id = window.location.pathname.split('/')[3];
+  const { columns, buttonText, dataTestId, data } = props;
 
   const dispatch = useDispatch();
-  console.log(cartProducts);
   const renderDelButton = (row, index) => (
 
     <Button
       text={ buttonText }
       onClick={ () => { dispatch(handleCartProduct({ ...row, quantity: 0 })); } }
-      dataTestId={ `customer_checkout__element-order-table-remove-${index}` }
+      dataTestId={ `${dataTestId}remove-${index}` }
       disabled={ false }
       className="btn-danger"
     />
@@ -29,38 +28,40 @@ export default function Table(props) {
             <th key={ i + 1 }>{column}</th>
           ))}
         </tr>
-        { cartProducts.map((row, i) => {
+        { data.map((row, i) => {
           const products = Object.entries(row);
-          const productColumns = [
-            products[1], products[4], ['unit-price', products[2][1],
-            ],
-            [
-              'sub-total', (row.quantity * row.price).toFixed(2),
-            ],
-          ];
+          const productColumns = () => {
+            if (!id) {
+              return ([
+                products[1], products[4], ['unit-price', products[2][1]],
+                ['sub-total', (row.quantity * row.price).toFixed(2)]]
+              );
+            }
+            return ([products[1],
+              ['quantity', row.SaleProduct.quantity], ['unit-price', products[2][1]],
+              ['sub-total', (Math.abs(row.SaleProduct.quantity) * Math.abs(row.price))
+                .toFixed(2)],
+            ]);
+          };
           return (
             <tr key={ i + 1 }>
               <td
                 key={ i + 1 }
                 data-testid={
-                  `customer_checkout__element-order-table-item-number-${i}`
+                  `${dataTestId}item-number-${i}`
                 }
               >
                 { i + 1 }
               </td>
-              {productColumns.map(([key, value]) => (
+              {productColumns().map(([key, value]) => (
                 <td
                   key={ key }
-                  data-testid={ `customer_checkout__element-order-table-${key}-${i}` }
+                  data-testid={ `${dataTestId}${key}-${i}` }
                 >
                   { (value.toString()).replace(/\./, ',') }
                 </td>
               ))}
-              <td>
-                { buttonText
-                  ? renderDelButton(row, i)
-                  : null}
-              </td>
+              { buttonText && renderDelButton(row, i) }
             </tr>
           );
         })}
@@ -72,4 +73,14 @@ export default function Table(props) {
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   buttonText: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    SaleProduct: PropTypes.shape({
+      quantity: PropTypes.number,
+    }),
+  })),
+};
+
+Table.defaultProps = {
+  data: {},
 };
