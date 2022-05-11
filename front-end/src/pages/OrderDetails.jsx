@@ -27,7 +27,7 @@ export default function OrderDetails() {
       }
     };
     getOrderDetails();
-  }, []);
+  }, [id, userStorage]);
 
   const { totalPrice, status, saleDate, seller, products } = orderDetails;
   return (
@@ -39,24 +39,32 @@ export default function OrderDetails() {
       <div className="checkout-info">
         <h4 className="OrderNum">
           Pedido:
-          {`${id}`}
+          <h4 data-testid=" customer_order_details__element-order-details-label-order-id">
+            {`${id}`}
+          </h4>
           ;
         </h4>
         <h4>
           P.Vendedora:
         </h4>
-        <h4>
+        <h4 data-testid="customer_order_details__element-order-details-label-seller-name">
           {`${seller && seller.name}`}
           ;
         </h4>
-        <h4>
+        <h4 data-testid="customer_order_details__element-order-details-label-order-date">
           {new Date(saleDate).toLocaleDateString('pt-BR')}
           ;
         </h4>
-        <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>
+        <h3 data-testid="customer_orders__element-delivery-status">
           { status && status.toUpperCase() }
         </h3>
-        <Button buttonText="Marcar como entregue" />
+        <Button
+          text="Marcar como entregue"
+          onClick
+          dataTestId="customer_order_details__button-delivery-check"
+          disabled={ status === 'Entregue' }
+          className="card-button"
+        />
         {products && <Table
           data={ products }
           columns={
