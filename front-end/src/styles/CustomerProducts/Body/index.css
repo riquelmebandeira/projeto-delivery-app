@@ -1,8 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-}
-
 .card-button {
   align-items: center;
   align-self: flex-end;
@@ -13,6 +8,18 @@ body {
   justify-content: center;
   margin-right: 10%;
   width: 220px;
+}
+
+a > .card-button {
+  position: fixed;
+  right: 10%;
+  top: 80%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 80px;
 }
 
 .card-container {

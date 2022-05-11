@@ -53,7 +53,7 @@ export default function CustomerProducts() {
             data-testid="customer_products__button-cart"
             disabled={ cartProducts.length === 0 }
           >
-            {/* Ver carrinho: R$ */}
+            <p>Ver carrinho: R$ </p>
             <p data-testid="customer_products__checkout-bottom-value">
               { totalValue.replace(/\./, ',') }
             </p>
