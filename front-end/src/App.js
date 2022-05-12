@@ -8,11 +8,16 @@ import CustomerCheckout from './pages/CustomerCheckout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
+const user = JSON.parse(localStorage.getItem('user'));
+
 function App() {
   return (
     <Routes>
       {/* rota Comum */}
-      <Route path="/login" element={ <Login /> } />
+      <Route
+        path="/login"
+        element={ !user ? <Login /> : <Navigate to={ `/${user.role}` } /> }
+      />
       <Route path="/register" element={ <Register /> } />
       <Route exact path="/" element={ <Navigate to="/login" /> } />
       {/* rota Customer */}
