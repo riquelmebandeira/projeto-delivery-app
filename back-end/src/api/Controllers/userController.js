@@ -14,6 +14,18 @@ async function register(req, res) {
   return res.status(utils.HTTP_CREATED_STATUS).json({ token }).end();
 }
 
+async function create(req, res) {
+  const { role } = req.user;
+
+  if (role !== 'administrator') {
+    return res.status(utils.HTTP_UNAUTHORIZED_STATUS).json(utils.MESSAGES.UNAUTHORIZED_USER);
+  }
+
+  const token = await userService.register(req.body);
+
+  return res.status(utils.HTTP_CREATED_STATUS).json({ token });
+}
+
 async function findAll(_req, res) {
   const users = await userService.findAll();
 
@@ -45,4 +57,5 @@ module.exports = {
   findAll,
   findAllSellers,
   destroy,
+  create,
 };

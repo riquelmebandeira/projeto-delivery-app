@@ -5,6 +5,7 @@ import CustomerProducts from './pages/CustomerProducts';
 import OrderDetails from './pages/OrderDetails';
 import Orders from './pages/Orders';
 import CustomerCheckout from './pages/CustomerCheckout';
+import AdminManage from './pages/AdminManage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -31,8 +32,8 @@ function App() {
       <Route path="/seller/orders/:orderId" element={ <OrderDetails /> } />
       <Route exact path="/seller/" element={ <Navigate to="/seller/orders" /> } />
       {/* Rota Admin */}
-      <Route path="/admin/manage" element="<AdminManage />" />
-      <Route exact path="/admin/" element={ <Navigate to="/admin/manage" /> } />
+      <Route exact path="/administrator/" element={ <Navigate to="/admin/manage" /> } />
+      <Route path="/admin/manage" element={ <AdminManage /> } />
     </Routes>
   );
 }

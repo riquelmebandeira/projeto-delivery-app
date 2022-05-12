@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const rescue = require('express-rescue');
 
-const validateJWT = require('../../utils/validateJWT');
+const validateJWT = require('../Middlewares/validateJWT');
 const validateSaleData = require('../Middlewares/validateSaleData');
 const { findAll, findOne, create, update } = require('../Controllers/saleController');
 
