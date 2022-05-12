@@ -27,7 +27,7 @@ export default function Orders() {
   return (
     <>
       {sessionUser && <NavBar props={ sessionUser } />}
-      <body>
+      <main>
 
         {
           (orders.length > 0) && orders.map((order, index) => (
@@ -41,7 +41,7 @@ export default function Orders() {
           ))
         }
 
-      </body>
+      </main>
     </>
   );
 }
