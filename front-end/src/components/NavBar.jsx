@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/NavBar/index.css';
 
 function NavBar(props) {
   console.log(props);
-  const { props: { name } } = props;
+  const { props: { name, role } } = props;
   const handleLogout = () => {
     localStorage.clear();
   };
@@ -13,19 +13,20 @@ function NavBar(props) {
   return (
     <nav>
       <div className="flex-container">
-        <Link
-          data-testid="customer_products__element-navbar-link-products"
-          to="/customer/products"
-          className="produtos"
-        >
-          <h5>
-            PRODUTOS
-          </h5>
-        </Link>
-
+        { role === 'customer' && (
+          <Link
+            data-testid="customer_products__element-navbar-link-products"
+            to="/customer/products"
+            className="produtos"
+          >
+            <h5>
+              PRODUTOS
+            </h5>
+          </Link>
+        )}
         <Link
           data-testid="customer_products__element-navbar-link-orders"
-          to="/customer/orders"
+          to={ `/${role}/orders` }
         >
           <h5>
             MEUS PEDIDOS
@@ -47,7 +48,7 @@ function NavBar(props) {
           data-testid="customer_products__element-navbar-link-logout"
           to="/login"
           className="logout"
-          onClick={ handleLogout }
+          onClick={ () => { handleLogout(); return <Navigate to="/login" />; } }
         >
           <h5>
             Sair
@@ -61,6 +62,7 @@ function NavBar(props) {
 NavBar.propTypes = {
   props: PropTypes.shape({
     name: PropTypes.string,
+    role: PropTypes.string,
   }).isRequired,
 };
 

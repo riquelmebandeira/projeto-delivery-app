@@ -18,20 +18,20 @@ export default function OrderCard(props) {
   return (
     <div className="order-card">
 
-      <p data-testid={ `customer_orders__element-order-id-${id}` }>
+      <p data-testid={ `${user.role}_orders__element-order-id-${id}` }>
         {`Pedido ${id}`}
       </p>
 
-      <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>
+      <h3 data-testid={ `${user.role}_orders__element-delivery-status-${id}` }>
         { status }
       </h3>
 
       <div>
-        <h4 data-testid={ `customer_orders__element-order-date-${id}` }>
+        <h4 data-testid={ `${user.role}_orders__element-order-date-${id}` }>
           {new Date(saleDate).toLocaleDateString('pt-BR')}
         </h4>
 
-        <h4 data-testid={ `customer_orders__element-card-price-${id}` }>
+        <h4 data-testid={ `${user.role}_orders__element-card-price-${id}` }>
           { totalPrice.replace(/\./, ',') }
         </h4>
       </div>

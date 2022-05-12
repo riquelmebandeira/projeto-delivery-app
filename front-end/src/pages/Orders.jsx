@@ -33,7 +33,7 @@ export default function Orders() {
           (orders.length > 0) && orders.map((order, index) => (
             <Link
               key={ index }
-              to={ `/customer/orders/${order.id}` }
+              to={ `/${sessionUser.role}/orders/${order.id}` }
               className="orders-container"
             >
               <OrderCard key={ index } cardData={ order } user={ sessionUser } />
