@@ -6,6 +6,8 @@ import Table from '../components/Table';
 import '../styles/CustomerCheckout.css';
 import { requestData as requestOrder } from '../services/requests';
 
+const olhaGambi = 'customer_order_details__element-order-details-label-delivery-status';
+
 export default function OrderDetails() {
   const id = window.location.pathname.split('/')[3];
   const [sessionUser, setSessionUser] = useState('');
@@ -36,10 +38,10 @@ export default function OrderDetails() {
       <h4 className="Checkout-Title">
         Detalhes do pedido
       </h4>
-      <div className="checkout-info">
+      <div className="OrderStatus">
         <h4 className="OrderNum">
           Pedido:
-          <h4 data-testid=" customer_order_details__element-order-details-label-order-id">
+          <h4 data-testid="customer_order_details__element-order-details-label-order-id">
             {`${id}`}
           </h4>
           ;
@@ -55,33 +57,35 @@ export default function OrderDetails() {
           {new Date(saleDate).toLocaleDateString('pt-BR')}
           ;
         </h4>
-        <h3 data-testid="customer_orders__element-delivery-status">
-          { status && status.toUpperCase() }
+        <h3
+          data-testid={ olhaGambi } // linter sabotando a organização.
+        >
+          { status }
         </h3>
         <Button
           text="Marcar como entregue"
           onClick
           dataTestId="customer_order_details__button-delivery-check"
-          disabled={ status === 'Entregue' }
+          disabled={ status }
           className="card-button"
         />
-        {products && <Table
-          data={ products }
-          columns={
-            ['Item', 'Descrição', 'Quantidade',
-              'Valor Unitário', 'Sub-total']
-          }
-          buttonText={ null }
-          dataTestId="customer_order_details__element-order-table-"
-        />}
-        <div className="card-button">
-          <h3>Total: R$</h3>
-          <h3
-            data-testid="customer_checkout__element-order-total-price"
-          >
-            {totalPrice && totalPrice.replace(/\./, ',')}
-          </h3>
-        </div>
+      </div>
+      {products && <Table
+        data={ products }
+        columns={
+          ['Item', 'Descrição', 'Quantidade',
+            'Valor Unitário', 'Sub-total']
+        }
+        buttonText={ null }
+        dataTestId="customer_order_details__element-order-table-"
+      />}
+      <div className="card-button">
+        <h3>Total: R$</h3>
+        <h3
+          data-testid="customer_order_details__element-order-total-price"
+        >
+          {totalPrice && totalPrice.replace(/\./, ',')}
+        </h3>
       </div>
     </main>
   );
