@@ -23,7 +23,7 @@ export default function OrderCard(props) {
       </p>
 
       <h3 data-testid={ `customer_orders__element-delivery-status-${id}` }>
-        { status.toUpperCase() }
+        { status }
       </h3>
 
       <div>
