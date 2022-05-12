@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs/promises');
-const { User } = require('../database/models');
-const { ERR_CODES, MESSAGES } = require('./utils');
+const { User } = require('../../database/models');
+const { ERR_CODES, MESSAGES } = require('../../utils/utils');
 
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization;

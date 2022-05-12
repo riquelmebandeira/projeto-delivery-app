@@ -20,6 +20,7 @@ const registerSchema = joi.object().keys({
     'string.empty': utils.MESSAGES.PASSWORD_EMPTY,
     'any.required': utils.MESSAGES.PASSWORD_NOT_FOUND,
   }),
+  role: joi.string().min(6),
 });
 
 module.exports = registerSchema;
