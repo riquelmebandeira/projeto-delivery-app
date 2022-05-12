@@ -6,14 +6,11 @@ import Table from '../components/Table';
 import '../styles/CustomerCheckout.css';
 import { requestData as requestOrder } from '../services/requests';
 
-const olhaGambi = 'customer_order_details__element-order-details-label-delivery-status';
-
 export default function OrderDetails() {
   const id = window.location.pathname.split('/')[3];
   const [sessionUser, setSessionUser] = useState('');
   const [orderDetails, setOrderDetails] = useState({});
   const userStorage = JSON.parse(localStorage.getItem('user'));
-
   useEffect(() => {
     const { token } = JSON.parse(localStorage.getItem('user'));
     setSessionUser(userStorage);
@@ -29,9 +26,10 @@ export default function OrderDetails() {
       }
     };
     getOrderDetails();
-  }, [id, userStorage]);
+  }, []);
 
   const { totalPrice, status, saleDate, seller, products } = orderDetails;
+  const { role } = sessionUser;
   return (
     <main>
       {sessionUser && <NavBar props={ sessionUser } />}
@@ -41,7 +39,10 @@ export default function OrderDetails() {
       <div className="OrderStatus">
         <h4 className="OrderNum">
           Pedido:
-          <h4 data-testid="customer_order_details__element-order-details-label-order-id">
+          <h4
+            data-testid={ `${role}_order_details__element
+          -order-details-label-order-id"` }
+          >
             {`${id}`}
           </h4>
           ;
@@ -49,16 +50,23 @@ export default function OrderDetails() {
         <h4>
           P.Vendedora:
         </h4>
-        <h4 data-testid="customer_order_details__element-order-details-label-seller-name">
+        <h4
+          data-testid={ `${role}_order_details__element
+        -order-details-label-seller-name"` }
+        >
           {`${seller && seller.name}`}
           ;
         </h4>
-        <h4 data-testid="customer_order_details__element-order-details-label-order-date">
+        <h4
+          data-testid={ `${role}_order_details__element
+        -order-details-label-order-date` }
+        >
           {new Date(saleDate).toLocaleDateString('pt-BR')}
           ;
         </h4>
         <h3
-          data-testid={ olhaGambi } // linter sabotando a organização.
+          data-testid={ `${role}_order_details__element
+          -order-details-label-delivery-status` }
         >
           { status }
         </h3>

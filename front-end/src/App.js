@@ -28,7 +28,7 @@ function App() {
       <Route exact path="/customer/" element={ <Navigate to="/customer/products" /> } />
       {/* Rota Vendor */}
       <Route path="/seller/orders" element={ <Orders /> } />
-      <Route path=":orderId" element="<SellerOrderDetails />" />
+      <Route path="/seller/orders/:orderId" element={ <OrderDetails /> } />
       <Route exact path="/seller/" element={ <Navigate to="/seller/orders" /> } />
       {/* Rota Admin */}
       <Route path="/admin/manage" element="<AdminManage />" />

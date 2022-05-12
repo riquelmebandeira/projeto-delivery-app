@@ -1,14 +1,11 @@
 import React from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/NavBar/index.css';
 
 function NavBar(props) {
   console.log(props);
   const { props: { name, role } } = props;
-  const handleLogout = () => {
-    localStorage.clear();
-  };
 
   return (
     <nav>
@@ -48,7 +45,7 @@ function NavBar(props) {
           data-testid="customer_products__element-navbar-link-logout"
           to="/login"
           className="logout"
-          onClick={ () => { handleLogout(); return <Navigate to="/login" />; } }
+          onClick={ () => { localStorage.clear(); } }
         >
           <h5>
             Sair
