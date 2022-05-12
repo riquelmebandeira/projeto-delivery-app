@@ -11,9 +11,9 @@ export default function Orders() {
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
-    const { token } = userStorage;
+    let token;
+    if (userStorage) token = userStorage.token;
     setSessionUser(userStorage);
-
     const getOrders = async () => {
       const endpoint = '/sales';
       const response = await requestOrders(endpoint, token);

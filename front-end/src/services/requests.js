@@ -25,4 +25,10 @@ export const postOrders = async (endpoint, token, body) => {
   return data;
 };
 
+export const updateOrder = async (endpoint, token) => {
+  setToken(token);
+  const { data } = await api.put(endpoint);
+  return data;
+};
+
 export default api;
