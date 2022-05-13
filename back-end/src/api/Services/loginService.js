@@ -1,5 +1,6 @@
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const fs = require('fs/promises');
 const { utils } = require('../../utils');
 const loginSchema = require('../../Schemas/loginSchema');
 const { User } = require('../../database/models');
@@ -31,8 +32,6 @@ async function login({ email, password }) {
 
   const encrypted = md5(password);
 
-  console.log(encrypted);
-
   if (user.password !== encrypted) {
     const e = new Error();
     e.message = utils.MESSAGES.CREDENTIALS_INVALID;
@@ -42,7 +41,9 @@ async function login({ email, password }) {
 
   const { password: pwd, ...userInfo } = user;
 
-  return jwt.sign(userInfo, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
+  const secret = await fs.readFile('jwt.evaluation.key', 'utf-8');
+
+  return jwt.sign(userInfo, secret, { expiresIn: '1d', algorithm: 'HS256' });
 }
 
 module.exports = {

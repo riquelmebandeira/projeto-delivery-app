@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import '../styles/NavBar/index.css';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import '../styles/NavBar/index.css';
 
-function NavBar() {
-  const [sessionUser, setSessionUser] = useState('');
-
-  const handleLogout = () => {
-    localStorage.clear();
-  };
-
-  useEffect(() => {
-    const userStorage = localStorage.getItem('user');
-
-    setSessionUser(JSON.parse(userStorage));
-  }, []);
+function NavBar(props) {
+  console.log(props);
+  const { props: { name, role } } = props;
 
   return (
-    <header>
+    <nav>
       <div className="flex-container">
-        <Link data-testid="11" to="/customer/products" className="produtos">
-          <h5>
-            PRODUTOS
-          </h5>
-        </Link>
-
-        <Link data-testid="12" to="/customer/orders">
+        { role === 'customer' && (
+          <Link
+            data-testid="customer_products__element-navbar-link-products"
+            to="/customer/products"
+            className="produtos"
+          >
+            <h5>
+              PRODUTOS
+            </h5>
+          </Link>
+        )}
+        <Link
+          data-testid="customer_products__element-navbar-link-orders"
+          to={ `/${role}/orders` }
+        >
           <h5>
             MEUS PEDIDOS
           </h5>
@@ -32,20 +32,35 @@ function NavBar() {
       </div>
 
       <div className="flex-container">
-        <div className="name" data-testid="13">
+        <div
+          className="name"
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
           <h5>
-            { (sessionUser) ? sessionUser.username : null }
+            { name }
           </h5>
         </div>
 
-        <Link data-testid="14" to="/login" className="logout" onClick={ handleLogout }>
+        <Link
+          data-testid="customer_products__element-navbar-link-logout"
+          to="/login"
+          className="logout"
+          onClick={ () => { localStorage.clear(); } }
+        >
           <h5>
             Sair
           </h5>
         </Link>
       </div>
-    </header>
+    </nav>
   );
 }
+
+NavBar.propTypes = {
+  props: PropTypes.shape({
+    name: PropTypes.string,
+    role: PropTypes.string,
+  }).isRequired,
+};
 
 export default NavBar;

@@ -19,10 +19,9 @@ const Register = () => {
       const endpoint = '/users';
 
       const { token } = await requestLogin(endpoint, { name, email, password });
-      const decoded = await jwtDecode(token);
-      setRole(decoded.role);
-      localStorage.setItem('token', JSON.stringify({ token }));
-      localStorage.setItem('user', JSON.stringify({ ...decoded }));
+      const user = await jwtDecode(token);
+      setRole(user.role);
+      localStorage.setItem('user', JSON.stringify({ token, ...user }));
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);

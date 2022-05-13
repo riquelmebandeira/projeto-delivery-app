@@ -17,10 +17,9 @@ const Login = () => {
     try {
       const endpoint = '/login';
       const { token } = await requestLogin(endpoint, { email, password });
-      const decoded = jwtDecode(token);
-      setRole(decoded.role);
-      localStorage.setItem('token', JSON.stringify({ token }));
-      localStorage.setItem('user', JSON.stringify({ ...decoded }));
+      const user = jwtDecode(token);
+      setRole(user.role);
+      localStorage.setItem('user', JSON.stringify({ token, ...user }));
       setIsLogged(true);
     } catch (error) {
       console.log(error);

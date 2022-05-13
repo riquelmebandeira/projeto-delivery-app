@@ -1,13 +1,17 @@
 const { Sale, SaleProduct, User, Product } = require('../../database/models');
 
-async function findAll() {
-  return Sale.findAll();
+async function findAllCustomer(userId) {
+  return Sale.findAll({ where: { userId } });
+}
+
+async function findAllSeller(sellerId) {
+  return Sale.findAll({ where: { sellerId } });
 }
 
 async function create(data) {
   const { products, userId, sellerId, deliveryAddress, deliveryNumber } = data;
 
-  let totalPrice = products.reduce((sum, product) => sum + (+product.price), 0);
+  let totalPrice = products.reduce((sum, product) => sum + (+product.price * product.quantity), 0);
 
   totalPrice = totalPrice.toFixed(2);
 
@@ -40,15 +44,17 @@ async function update(id, userRole) {
     await Sale.update({ status: 'Entregue' }, { where: { id } });
   }
   
+  if (userRole === 'seller') {
   const newStatus = sale.status === 'Pendente' ? 'Preparando' : 'Em Trânsito'; 
-
+  
   await Sale.update({ status: newStatus }, { where: { id } });
-
+  }
   return Sale.findOne({ where: { id } });
 }
 
 module.exports = {
-  findAll,
+  findAllCustomer,
+  findAllSeller,
   create,
   findOne,
   update,

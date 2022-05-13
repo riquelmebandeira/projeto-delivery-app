@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import '../styles/ProductCard/index.css';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import {
-  incrementQuantity,
-  decrementQuantity,
-  incrementValue,
-} from '../redux/features/productsSlice';
+import PropTypes from 'prop-types';
+
+import { handleCartProduct } from '../redux/features/productsSlice';
+
 import Button from './Button';
-import Input from './Input';
+
+import '../styles/ProductCard/index.css';
 
 export default function ProductCard({ dataCard }) {
   const [inputValue, setInputValue] = useState(0);
@@ -16,67 +14,79 @@ export default function ProductCard({ dataCard }) {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    dispatch(incrementQuantity());
+    const product = { ...dataCard, quantity: inputValue + 1 };
 
-    dispatch(incrementValue(inputValue >= 0 ? dataCard.price : null));
+    dispatch(handleCartProduct(product));
 
-    setInputValue(inputValue >= 0 ? inputValue + 1 : inputValue);
+    setInputValue(inputValue + 1);
+  };
+
+  const handleChange = (quantity) => {
+    const product = { ...dataCard, quantity };
+
+    dispatch(handleCartProduct(product));
+
+    setInputValue(quantity);
   };
 
   const handleDecrement = () => {
-    dispatch(inputValue <= 0 ? null : decrementQuantity());
+    if (inputValue > 0) {
+      const product = { ...dataCard, quantity: inputValue - 1 };
 
-    dispatch(incrementValue(inputValue <= 0 ? null : dataCard.price));
+      dispatch(handleCartProduct(product));
 
-    setInputValue(inputValue <= 0 ? inputValue : inputValue - 1);
+      setInputValue(inputValue - 1);
+    }
   };
 
   return (
-    <div
-      className="card-container"
-      style={ { backgroundImage: `url(${dataCard.url_image})` } }
-      data-testid="17"
-    >
+    <div className="card-container">
+      <img
+        src={ dataCard.url_image }
+        alt={ dataCard.name }
+        data-testid={ `customer_products__img-card-bg-image-${dataCard.id}` }
+      />
+      {/* R$ */}
+      <h5 data-testid={ `customer_products__element-card-price-${dataCard.id}` }>
+        { dataCard.price.replace(/\./, ',') }
+      </h5>
 
-      <div style={ { alignSelf: 'start', fontSize: 20 } }>
-        <h5 data-testid="16">
-          R$
-          {dataCard.value}
+      <div className="product-controls">
+        <h5 data-testid={ `customer_products__element-card-title-${dataCard.id}` }>
+          { dataCard.name }
         </h5>
-      </div>
 
-      <div className="input-container">
-        <h5 data-testid="15">{ dataCard.name }</h5>
-
-        <div style={ { marginLeft: 45 } }>
+        <div className="input-container">
 
           <Button
             text="-"
+            value="-"
             type="button"
             disabled={ false }
             onClick={ handleDecrement }
-            dataTestId="19"
+            dataTestId={ `customer_products__button-card-rm-item-${dataCard.id}` }
           />
 
-          <Input
+          <input
             type="text"
             value={ inputValue }
+            labelText="none"
             placeholder="0"
-            onChange={ (e) => setInputValue(+e.target.value) }
-            dataTestId="20"
+            onChange={ (e) => handleChange(+e.target.value) }
+            data-testid={ `customer_products__input-card-quantity-${dataCard.id}` }
           />
 
           <Button
             text="+"
+            value="+"
             type="button"
             disabled={ false }
             onClick={ handleIncrement }
-            dataTestId="18"
+            dataTestId={ `customer_products__button-card-add-item-${dataCard.id}` }
           />
 
         </div>
       </div>
-
     </div>
   );
 }

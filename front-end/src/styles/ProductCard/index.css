@@ -11,7 +11,7 @@
   width: 200px;
 }
 
-.input-container {
+.product-controls {
   align-items: center;
   background-color: rgb(223, 222, 222);
   display: flex;
@@ -20,17 +20,42 @@
   width: 100%;
 }
 
-input {
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.input-container > input {
   border-radius: 5px;
   height: 80%;
+  margin-inline: 5px;
   text-align: center;
   width: 20%;
 }
 
-button {
+.input-container > button {
   background-color: #0d6750;
   border-radius: 5px;
   color: white;
   height: 36px;
+  margin-left: 15px;
+  margin-right: 15px;
+  min-width: fit-content;
   width: 36px;
+}
+
+.input-container > h5 {
+  margin: 0.1px;
+}
+
+.price-container {
+  align-self: 'start';
+  display: flex;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.card-image {
+  z-index: -1;
 }

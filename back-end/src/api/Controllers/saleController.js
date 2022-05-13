@@ -1,8 +1,11 @@
 const saleService = require('../Services/saleService');
 const { utils } = require('../../utils');
 
-async function findAll(_req, res) {
-  const sales = await saleService.findAll();
+async function findAll(req, res) {
+  const { id, role } = req.user;
+
+  const sales = role === 'seller' 
+  ? await saleService.findAllSeller(id) : await saleService.findAllCustomer(id);
 
   return res.status(utils.HTTP_OK_STATUS).json(sales);
 }

@@ -17,7 +17,7 @@ function validate(registrationInfo) {
   return registrationInfo;
 }
 
-async function register({ name, email, password: pwd }) {
+async function register({ name, email, password: pwd, role = 'customer' }) {
   const user = await User.findOne({ where: { email } });
 
   if (user) {
@@ -29,7 +29,7 @@ async function register({ name, email, password: pwd }) {
 
   const encryptedPwd = md5(pwd);
 
-  const createdUser = await User.create({ name, email, password: encryptedPwd, role: 'customer' });
+  const createdUser = await User.create({ name, email, password: encryptedPwd, role });
 
   const { password, ...userInfo } = createdUser.dataValues;
 
@@ -47,6 +47,17 @@ async function findAll() {
   return usersWithoutPwd;
 }
 
+async function findAllSellers() {
+  const users = await User.findAll({ where: { role: 'seller' } });
+
+  const usersWithoutPwd = users.map((user) => {
+    const { password, ...data } = user.dataValues;
+    return data;
+  });
+
+  return usersWithoutPwd;
+}
+
 async function destroy(id) {
   return User.destroy({ where: { id } });
 }
@@ -55,5 +66,6 @@ module.exports = {
   validate,
   register,
   findAll,
+  findAllSellers,
   destroy,
 };
