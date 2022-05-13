@@ -96,7 +96,7 @@ export default function OrderDetails() {
           text="Marcar como entregue"
           onClick={ () => buttonClickHandler() }
           dataTestId="customer_order_details__button-delivery-check"
-          disabled={ orderStatus !== 'Em trânsito' }
+          disabled={ orderStatus !== 'Em Trânsito' }
           className="card-button"
         /> }
       </div>
