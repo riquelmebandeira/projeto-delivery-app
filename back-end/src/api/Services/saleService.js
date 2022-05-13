@@ -44,10 +44,11 @@ async function update(id, userRole) {
     await Sale.update({ status: 'Entregue' }, { where: { id } });
   }
   
+  if (userRole === 'seller') {
   const newStatus = sale.status === 'Pendente' ? 'Preparando' : 'Em Trânsito'; 
-
+  
   await Sale.update({ status: newStatus }, { where: { id } });
-
+  }
   return Sale.findOne({ where: { id } });
 }
 
