@@ -13,15 +13,15 @@
   width: 100%;
 }
 
-td {
+.checkout-info table td {
   text-align: center;
 }
 
-tr:not( :first-child ) {
+.checkout-info table tr:not( :first-child ) {
   background-color: rgb(231, 231, 231);
 }
 
-tr td:last-child {
+.checkout-info table tr td:last-child {
   background-color: rgb(223, 78, 78);
 }
 

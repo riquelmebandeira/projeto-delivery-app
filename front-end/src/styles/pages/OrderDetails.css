@@ -1,0 +1,34 @@
+.order-details-title {
+  margin-left: 126px;
+}
+
+.order-data-container {
+  align-items: center;
+  background-color: rgb(231, 231, 231);
+  display: flex;
+  justify-content: space-around;
+}
+
+.order-details-container {
+  box-shadow: 0.1px 3px 5px rgb(173, 173, 173);
+  margin: auto;
+  padding: 16px;
+  width: 1200px;
+}
+
+.order-details-container table {
+  width: 100%;
+}
+
+.order-details-container table tr {
+  height: 32px;
+}
+
+.order-details-container table td {
+  text-align: center;
+}
+
+.order-details-container table tr:not( :first-child ) {
+  background-color: rgb(231, 231, 231);
+}
+
