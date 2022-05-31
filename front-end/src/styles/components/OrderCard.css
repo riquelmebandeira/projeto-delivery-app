@@ -4,21 +4,18 @@
   box-shadow: 0.1rem 0.1rem 0.1rem gray;
   color: #001813;
   display: flex;
-  height: 8rem;
+  height: 6rem;
   justify-content: space-around;
-  margin-left: 4rem;
-  margin-right: 1rem;
-  margin-top: 2rem;
-  width: 30rem;
+  width: 28rem;
 }
 
 .order-card h3 {
   background-color: #eeb438;
   border-radius: 0.5rem;
-  padding: 3rem;
+  padding: 2rem;
 }
 
 .order-card div {
-  font-size: large;
+  font-size: medium;
   text-align: center;
 }

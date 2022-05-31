@@ -27,20 +27,17 @@ export default function Orders() {
   return (
     <>
       {sessionUser && <NavBar props={ sessionUser } />}
-      <main>
-
+      <main className="orders-container">
         {
           (orders.length > 0) && orders.map((order, index) => (
             <Link
               key={ index }
               to={ `/${sessionUser.role}/orders/${order.id}` }
-              className="orders-container"
             >
               <OrderCard key={ index } cardData={ order } user={ sessionUser } />
             </Link>
           ))
         }
-
       </main>
     </>
   );
