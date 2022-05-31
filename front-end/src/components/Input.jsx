@@ -4,25 +4,18 @@ import PropTypes from 'prop-types';
 const Input = (props) => {
   const { labelText, onChange, dataTestId, placeHolder, type, value } = props;
 
-  const labelRender = () => (
-    <label htmlFor={ labelText }>
-      <h5>{ labelText }</h5>
-    </label>
-  );
-
   return (
-    <>
-      { labelText === 'none'
-        ? null
-        : labelRender() }
+    <label htmlFor={ labelText }>
+      { labelText }
       <input
+        id={ labelText }
         value={ value }
         type={ type }
         onChange={ onChange }
         data-testid={ dataTestId }
         placeholder={ placeHolder }
       />
-    </>
+    </label>
   );
 };
 
