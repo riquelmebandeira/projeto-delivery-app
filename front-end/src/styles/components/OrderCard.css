@@ -12,10 +12,14 @@
 .order-card h3 {
   background-color: #eeb438;
   border-radius: 0.5rem;
-  padding: 2rem;
+  padding: 1.6rem;
 }
 
 .order-card div {
   font-size: medium;
   text-align: center;
+}
+
+.customer-address {
+  font-size: 16px;
 }

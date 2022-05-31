@@ -39,8 +39,9 @@ export default function OrderCard(props) {
         user.role === 'seller' && (
           <p
             data-testid={ `seller_orders__element-card-address-${id}` }
+            className="customer-address"
           >
-            { [deliveryAddress, deliveryNumber] }
+            { `${deliveryAddress}, ${deliveryNumber}` }
           </p>
         )
       }
