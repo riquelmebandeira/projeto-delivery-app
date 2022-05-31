@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar from '../components/NavBar';
 import OrderCard from '../components/OrderCard';
-import '../styles/Orders.css';
+import '../styles/pages/Orders.css';
 import { requestData as requestOrders } from '../services/requests';
 
 export default function Orders() {

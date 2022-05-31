@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import '../styles/NavBar/index.css';
+import '../styles/components/NavBar.css';
 
 function NavBar(props) {
   console.log(props);

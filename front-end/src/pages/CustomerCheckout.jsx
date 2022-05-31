@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 import Table from '../components/Table';
 import Input from '../components/Input';
 import Button from '../components/Button';
-import '../styles/CustomerCheckout.css';
+import '../styles/pages/CustomerCheckout.css';
 import { requestData as requestSellers, postOrders } from '../services/requests';
 import { handleNewPage } from '../redux/features/productsSlice';
 

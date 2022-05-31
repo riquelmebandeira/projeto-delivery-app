@@ -5,7 +5,7 @@ import { requestData as requestProducts } from '../services/requests';
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
 
-import '../styles/CustomerProducts/Body/index.css';
+import '../styles/pages/CustomerProducts.css';
 
 export default function CustomerProducts() {
   const [products, setProducts] = useState([]);

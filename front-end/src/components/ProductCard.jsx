@@ -6,7 +6,7 @@ import { handleCartProduct } from '../redux/features/productsSlice';
 
 import Button from './Button';
 
-import '../styles/ProductCard/index.css';
+import '../styles/components/ProductCard.css';
 
 export default function ProductCard({ dataCard }) {
   const [inputValue, setInputValue] = useState(0);

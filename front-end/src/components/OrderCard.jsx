@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/OrderCard.css';
+import '../styles/components/OrderCard.css';
 import PropTypes from 'prop-types';
 
 export default function OrderCard(props) {

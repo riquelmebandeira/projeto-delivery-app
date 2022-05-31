@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
-import '../styles/CustomerCheckout.css';
+import '../styles/pages/CustomerCheckout.css';
 import { requestData as requestOrder, updateOrder } from '../services/requests';
 
 export default function OrderDetails() {
