@@ -30,11 +30,18 @@ tr td:last-child {
   border: none;
 }
 
-.card-button {
+.total-price-container {
+  align-items: center;
   background-color: #0d6750;
   border-radius: 4px;
   color: white;
+  display: flex;
+  font-size: 18px;
+  font-weight: 900;
+  height: 45px;
+  justify-content: center;
   margin-top: 12px;
+  width: 220px;
 }
 
 .checkout-form-container {

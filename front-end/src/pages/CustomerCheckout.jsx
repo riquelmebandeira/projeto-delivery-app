@@ -66,7 +66,7 @@ export default function CustomerCheckout() {
             buttonText="Remover"
             dataTestId="customer_checkout__element-order-table-"
           />
-          <div className="card-button">
+          <div className="total-price-container">
             <h3>Total: R$</h3>
             <h3
               data-testid="customer_checkout__element-order-total-price"
