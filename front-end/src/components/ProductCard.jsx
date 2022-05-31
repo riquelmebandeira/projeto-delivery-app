@@ -70,7 +70,7 @@ export default function ProductCard({ dataCard }) {
           <input
             type="text"
             value={ inputValue }
-            labelText="none"
+            labeltext="none"
             placeholder="0"
             onChange={ (e) => handleChange(+e.target.value) }
             data-testid={ `customer_products__input-card-quantity-${dataCard.id}` }
@@ -92,5 +92,10 @@ export default function ProductCard({ dataCard }) {
 }
 
 ProductCard.propTypes = {
-  dataCard: PropTypes.objectOf(PropTypes.string).isRequired,
+  dataCard: PropTypes.shape({
+    name: PropTypes.string,
+    id: PropTypes.number,
+    price: PropTypes.string,
+    url_image: PropTypes.string,
+  }).isRequired,
 };

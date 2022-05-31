@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Button from '../components/Button';
 import NavBar from '../components/NavBar';
 import Table from '../components/Table';
@@ -120,11 +119,3 @@ export default function OrderDetails() {
     </main>
   );
 }
-
-OrderDetails.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
