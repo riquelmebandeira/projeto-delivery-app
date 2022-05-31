@@ -5,6 +5,7 @@ import Select from '../components/Select';
 import Input from '../components/Input';
 import { postOrders as postUser } from '../services/requests';
 import { ROLE_OPTIONS, EMAIL_REGEX, NAME_LENGTH, PWD_LENGTH } from '../utils';
+import '../styles/pages/AdminManage.css';
 
 export default function CustomerProducts() {
   const [sessionUser, setSessionUser] = useState('');
@@ -39,22 +40,25 @@ export default function CustomerProducts() {
 
       <main>
         <section>
-          <h4>Cadastrar novo usuário</h4>
-          <form>
+          <h4 className="admin-page-title">Cadastrar novo usuário</h4>
+          <form className="admin-register-form">
             <Input
               labelText="Nome"
+              type="text"
               dataTestId="admin_manage__input-name"
               placeHolder="Nome e sobrenome"
               onChange={ (e) => setName(e.target.value) }
             />
             <Input
               labelText="Email"
+              type="text"
               dataTestId="admin_manage__input-email"
               placeHolder="seuemail@site.com"
               onChange={ (e) => setEmail(e.target.value) }
             />
             <Input
               labelText="Senha"
+              type="password"
               dataTestId="admin_manage__input-password"
               placeHolder="******"
               onChange={ (e) => setPassword(e.target.value) }
@@ -78,14 +82,17 @@ export default function CustomerProducts() {
             />
           </form>
         </section>
-
         {
           error && (
-            <h5 data-testid="admin_manage__element-invalid-register">
+            <h5
+              className="register-error-message"
+              data-testid="admin_manage__element-invalid-register"
+            >
               Não foi possível realizar o cadastro
             </h5>
           )
         }
+
       </main>
     </>
   );

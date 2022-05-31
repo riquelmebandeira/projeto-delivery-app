@@ -1,0 +1,42 @@
+.admin-page-title, .register-error-message {
+  margin-left: 126px;
+}
+
+.admin-register-form {
+  align-items: center;
+  box-shadow: 0.1px 3px 5px rgb(173, 173, 173);
+  display: flex;
+  gap: 12px;
+  justify-content: space-around;
+  margin: auto;
+  padding: 16px;
+  width: 1200px;
+}
+
+.admin-register-form > * {
+  width: 100%;
+}
+
+.admin-register-form label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  text-indent: 10px;
+}
+
+.admin-register-form input {
+  height: 32px;
+}
+
+.admin-register-form select {
+  border-radius: 4px;
+  height: 36px;
+}
+
+.admin-register-form button {
+  height: 30px;
+  line-height: 20%;
+  margin-top: 22px;
+  padding: 20px;
+  width: 100%;
+}
