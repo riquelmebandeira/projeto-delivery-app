@@ -1,29 +1,77 @@
-main {
-  display: flex;
-  flex-direction: column;
-}
-
-.Checkout-Input {
-  display: flex;
+.checkout-title {
+  margin-left: 126px;
 }
 
 .checkout-info {
-  display: flex;
-  flex-direction: column;
+  box-shadow: 0.1px 3px 5px rgb(173, 173, 173);
+  margin: auto;
+  padding: 16px;
+  width: 1200px;
 }
 
-table {
-  display: flex;
-  flex-direction: column;
+.checkout-info table {
+  width: 100%;
 }
 
-tr {
+td {
+  text-align: center;
+}
+
+tr:not( :first-child ) {
+  background-color: rgb(231, 231, 231);
+}
+
+tr td:last-child {
+  background-color: rgb(223, 78, 78);
+}
+
+.btn-danger {
+  background-color: transparent;
+  border: none;
+}
+
+.card-button {
+  background-color: #0d6750;
+  border-radius: 4px;
+  color: white;
+  margin-top: 12px;
+}
+
+.checkout-form-container {
+  align-items: center;
+  box-shadow: 0.1px 3px 5px rgb(173, 173, 173);
   display: flex;
+  gap: 12px;
   justify-content: space-around;
+  margin: auto;
+  padding: 16px;
+  width: 1200px;
 }
 
-td, th {
+.checkout-form-container > * {
+  width: 100%;
+}
+
+.checkout-form-container label {
   display: flex;
-  flex-direction: row;
-  margin-inline: auto;
+  flex-direction: column;
+  row-gap: 8px;
+  text-indent: 10px;
+}
+
+.checkout-form-container input {
+  height: 32px;
+}
+
+.checkout-form-container select {
+  border-radius: 4px;
+  height: 36px;
+}
+
+.checkout-form-container button {
+  height: 32px;
+  line-height: 20%;
+  margin-top: 22px;
+  padding: 20px;
+  width: 100%;
 }

@@ -10,14 +10,15 @@ export default function Table(props) {
 
   const dispatch = useDispatch();
   const renderDelButton = (row, index) => (
-
-    <Button
-      text={ buttonText }
-      onClick={ () => { dispatch(handleCartProduct({ ...row, quantity: 0 })); } }
-      dataTestId={ `${dataTestId}remove-${index}` }
-      disabled={ false }
-      className="btn-danger"
-    />
+    <td>
+      <Button
+        text={ buttonText }
+        onClick={ () => { dispatch(handleCartProduct({ ...row, quantity: 0 })); } }
+        dataTestId={ `${dataTestId}remove-${index}` }
+        disabled={ false }
+        className="btn-danger"
+      />
+    </td>
   );
 
   return (

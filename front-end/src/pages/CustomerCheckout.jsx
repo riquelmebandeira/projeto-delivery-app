@@ -50,34 +50,34 @@ export default function CustomerCheckout() {
   if (submited) return <Navigate to={ `/customer/orders/${submited}` } />;
 
   return (
-    <main>
+    <>
       {sessionUser && <NavBar props={ sessionUser } />}
-      <h4 className="Checkout-Title">
-        Finalizar pedido
-      </h4>
-      <div className="checkout-info">
-        <Table
-          data={ cartProducts }
-          columns={
-            ['Item', 'Descrição', 'quantidade',
-              'valor unitário', 'Sub-total', 'Remover item']
-          }
-          buttonText="Remover"
-          dataTestId="customer_checkout__element-order-table-"
-        />
-        <div className="card-button">
-          <h3>Total: R$</h3>
-          <h3
-            data-testid="customer_checkout__element-order-total-price"
-          >
-            { totalValue && totalValue.replace(/\./, ',') }
-          </h3>
+      <main>
+        <h4 className="checkout-title">
+          Finalizar pedido
+        </h4>
+        <div className="checkout-info">
+          <Table
+            data={ cartProducts }
+            columns={
+              ['Item', 'Descrição', 'quantidade',
+                'valor unitário', 'Sub-total', 'Remover item']
+            }
+            buttonText="Remover"
+            dataTestId="customer_checkout__element-order-table-"
+          />
+          <div className="card-button">
+            <h3>Total: R$</h3>
+            <h3
+              data-testid="customer_checkout__element-order-total-price"
+            >
+              { totalValue && totalValue.replace(/\./, ',') }
+            </h3>
+          </div>
         </div>
-      </div>
 
-      <h4 className="Checkout-Title">Detalhes e Endereço para entrega</h4>
-      <div>
-        <div className="Checkout-Input">
+        <h4 className="checkout-title">Detalhes e Endereço para entrega</h4>
+        <section className="checkout-form-container">
           <label htmlFor="Seller">
             P.Vendedora Responsável:
             <select
@@ -92,8 +92,6 @@ export default function CustomerCheckout() {
               ))}
             </select>
           </label>
-        </div>
-        <div className="Checkout-Input">
           <Input
             labelText="Endereço:"
             onChange={ ({ target }) => {
@@ -103,8 +101,6 @@ export default function CustomerCheckout() {
             placeHolder="Rua,Bairro e Cidade"
             type="text"
           />
-        </div>
-        <div className="Checkout-Input">
           <Input
             labelText="Número:"
             onChange={ ({ target }) => {
@@ -114,15 +110,15 @@ export default function CustomerCheckout() {
             placeHolder="Rua,Bairro e Cidade"
             type="text"
           />
-        </div>
-      </div>
-      <Button
-        text="Finalizar Pedido"
-        onClick={ () => { submitOrder(chckOutInfo); } }
-        dataTestId="customer_checkout__button-submit-order"
-        disabled={ false }
-        className="button-submit-order"
-      />
-    </main>
+          <Button
+            text="Finalizar Pedido"
+            onClick={ () => { submitOrder(chckOutInfo); } }
+            dataTestId="customer_checkout__button-submit-order"
+            disabled={ false }
+            className="button-submit-order"
+          />
+        </section>
+      </main>
+    </>
   );
 }
