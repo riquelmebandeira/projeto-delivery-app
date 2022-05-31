@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { requestLogin } from '../services/requests';
+import '../styles/pages/Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -46,21 +47,35 @@ const Login = () => {
       <div className="logo">
         { /* <img src={logo} alt="logo" /> */}
       </div>
-      <form>
+      <form className="login-form">
         <Input
           type="email"
-          labelText="login"
+          labelText="Login"
           onChange={ ({ target }) => handleChange(target, setEmail) }
           placeHolder="email@email.com.br"
           dataTestId="common_login__input-email"
         />
         <Input
           type="password"
-          labelText="password"
+          labelText="Senha"
           onChange={ ({ target }) => handleChange(target, setPassword) }
           placeHolder="Digite sua senha"
           dataTestId="common_login__input-password"
         />
+        <Button
+          text="LOGIN"
+          onClick={ (event) => login(event) }
+          dataTestId="common_login__button-login"
+          disabled={ password.length < MIN_CHARACTER || !EMAIL_REGEX.test(email) }
+          className="primary__btn"
+        />
+        <Link to="/register">
+          <Button
+            text="Ainda não tenho uma conta"
+            dataTestId="common_login__button-register"
+            className="terciary__btn"
+          />
+        </Link>
       </form>
       {
         (failedTryLogin)
@@ -74,20 +89,6 @@ const Login = () => {
           )
           : null
       }
-      <Button
-        text="LOGIN"
-        onClick={ (event) => login(event) }
-        dataTestId="common_login__button-login"
-        disabled={ password.length < MIN_CHARACTER || !EMAIL_REGEX.test(email) }
-        className="primary__btn"
-      />
-      <Link to="/register">
-        <Button
-          text="Ainda não tenho uma conta"
-          dataTestId="common_login__button-register"
-          className="terciary__btn"
-        />
-      </Link>
     </main>
   );
 };

@@ -16,6 +16,12 @@ button {
   width: 36px;
 }
 
+button:disabled {
+  background: rgb(160, 160, 160);
+  color: rgb(75, 75, 75);
+  opacity: 0.6;
+}
+
 input {
   border-radius: 5px;
   text-align: center;
