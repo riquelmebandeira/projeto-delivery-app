@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import { requestLogin } from '../services/requests';
+import '../styles/pages/Register.css';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -45,13 +46,11 @@ const Register = () => {
 
   return (
     <main className="login">
-      <div className="logo">
-        Cadastro
-      </div>
-      <form>
+      <div className="logo" />
+      <form className="register-form">
         <Input
           type="text"
-          labelText="name"
+          labelText="Nome"
           onChange={ ({ target }) => handleChange(target, setName) }
           placeHolder="Seu nome"
           dataTestId="common_register__input-name"
@@ -65,11 +64,28 @@ const Register = () => {
         />
         <Input
           type="password"
-          labelText="password"
+          labelText="Senha"
           onChange={ ({ target }) => handleChange(target, setPassword) }
           placeHolder="Digite sua senha"
           dataTestId="common_register__input-password"
         />
+        <Button
+          text="CADASTRAR"
+          onClick={ (event) => register(event) }
+          dataTestId="common_register__button-register"
+          disabled={ password
+            .length < MIN_CHARACTER
+            || !EMAIL_REGEX.test(email)
+            || name.length < MIN_NAME }
+          className="primary__btn"
+        />
+        <Link to="/login">
+          <Button
+            text="Já tenho uma conta"
+            dataTestId="common_register__button-login"
+            className="terciary__btn"
+          />
+        </Link>
       </form>
       {
         (failedTryLogin)
@@ -84,21 +100,6 @@ const Register = () => {
           )
           : null
       }
-      <Button
-        text="CADASTRAR"
-        onClick={ (event) => register(event) }
-        dataTestId="common_register__button-register"
-        disabled={ password
-          .length < MIN_CHARACTER || !EMAIL_REGEX.test(email) || name.length < MIN_NAME }
-        className="primary__btn"
-      />
-      <Link to="/login">
-        <Button
-          text="Já tenho uma conta"
-          dataTestId="common_register__button-login"
-          className="terciary__btn"
-        />
-      </Link>
     </main>
   );
 };
