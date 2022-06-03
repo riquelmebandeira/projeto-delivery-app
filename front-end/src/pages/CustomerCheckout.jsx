@@ -6,6 +6,7 @@ import Table from '../components/Table';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import '../styles/pages/CustomerCheckout.css';
+import '../styles/components/Form.css';
 import { requestData as requestSellers, postOrders } from '../services/requests';
 import { handleNewPage } from '../redux/features/productsSlice';
 
@@ -52,8 +53,8 @@ export default function CustomerCheckout() {
   return (
     <>
       {sessionUser && <NavBar props={ sessionUser } />}
-      <main>
-        <h4 className="checkout-title">
+      <main className="checkout-page">
+        <h4>
           Finalizar pedido
         </h4>
         <div className="checkout-info">
@@ -76,8 +77,8 @@ export default function CustomerCheckout() {
           </div>
         </div>
 
-        <h4 className="checkout-title">Detalhes e Endereço para entrega</h4>
-        <section className="checkout-form-container">
+        <h4>Detalhes e Endereço para entrega</h4>
+        <section className="custom-form">
           <label htmlFor="Seller">
             P.Vendedora Responsável:
             <select

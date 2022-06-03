@@ -5,6 +5,7 @@ import Select from '../components/Select';
 import Input from '../components/Input';
 import { postOrders as postUser } from '../services/requests';
 import { ROLE_OPTIONS, EMAIL_REGEX, NAME_LENGTH, PWD_LENGTH } from '../utils';
+import '../styles/components/Form.css';
 import '../styles/pages/AdminManage.css';
 
 export default function CustomerProducts() {
@@ -38,10 +39,10 @@ export default function CustomerProducts() {
     <>
       {sessionUser && <NavBar props={ sessionUser } />}
 
-      <main>
+      <main className="admin-page">
         <section>
           <h4 className="admin-page-title">Cadastrar novo usuário</h4>
-          <form className="admin-register-form">
+          <form className="custom-form">
             <Input
               labelText="Nome"
               type="text"

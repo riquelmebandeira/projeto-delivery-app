@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Button from './Button';
 import { handleCartProduct } from '../redux/features/productsSlice';
+import '../styles/components/Table.css';
 
 export default function Table(props) {
   const id = window.location.pathname.split('/')[3];
@@ -22,7 +23,7 @@ export default function Table(props) {
   );
 
   return (
-    <table>
+    <table className="custom-table">
       <tbody>
         <tr>
           { columns.map((column, i) => (

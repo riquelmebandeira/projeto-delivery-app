@@ -1,0 +1,38 @@
+.custom-form {
+  align-items: center;
+  box-shadow: 0.1px 3px 5px rgb(173, 173, 173);
+  display: flex;
+  gap: 12px;
+  justify-content: space-around;
+  margin: auto;
+  padding: 16px;
+  width: 1200px;
+}
+
+.custom-form > * {
+  width: 100%;
+}
+
+.custom-form label {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  text-indent: 10px;
+}
+
+.custom-form input {
+  height: 32px;
+}
+
+.custom-form select {
+  border-radius: 4px;
+  height: 36px;
+  text-align: center;
+}
+
+.custom-form button {
+  line-height: 0;
+  margin-top: 30px;
+  padding: 16px;
+  width: 100%;
+}

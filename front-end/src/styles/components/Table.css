@@ -1,0 +1,15 @@
+.custom-table {
+  width: 100%;
+}
+
+.custom-table td {
+  text-align: center;
+}
+
+.custom-table tr {
+  height: 32px;
+}
+
+.custom-table tr:not( :first-child ) {
+  background-color: rgb(231, 231, 231);
+}

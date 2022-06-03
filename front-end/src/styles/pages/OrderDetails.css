@@ -16,19 +16,3 @@
   width: 1200px;
 }
 
-.order-details-container table {
-  width: 100%;
-}
-
-.order-details-container table tr {
-  height: 32px;
-}
-
-.order-details-container table td {
-  text-align: center;
-}
-
-.order-details-container table tr:not( :first-child ) {
-  background-color: rgb(231, 231, 231);
-}
-
