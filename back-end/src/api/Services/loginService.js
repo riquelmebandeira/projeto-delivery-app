@@ -1,9 +1,8 @@
 const md5 = require('md5');
-const jwt = require('jsonwebtoken');
-const fs = require('fs/promises');
 const { utils } = require('../../utils');
 const loginSchema = require('../../Schemas/loginSchema');
 const { User } = require('../../database/models');
+const { generateToken } = require('../../utils/generateToken');
 
 async function validate(loginInfo) {
   const { error } = await loginSchema.validate(loginInfo);
@@ -41,9 +40,7 @@ async function login({ email, password }) {
 
   const { password: pwd, ...userInfo } = user;
 
-  const secret = await fs.readFile('jwt.evaluation.key', 'utf-8');
-
-  return jwt.sign(userInfo, secret, { expiresIn: '1d', algorithm: 'HS256' });
+  return generateToken(userInfo);
 }
 
 module.exports = {

@@ -1,8 +1,8 @@
 const md5 = require('md5');
-const jwt = require('jsonwebtoken');
 const { utils } = require('../../utils');
 const registerSchema = require('../../Schemas/registerSchema');
 const { User } = require('../../database/models');
+const { generateToken } = require('../../utils/generateToken');
 
 function validate(registrationInfo) {
   const { error } = registerSchema.validate(registrationInfo);
@@ -33,7 +33,7 @@ async function register({ name, email, password: pwd, role = 'customer' }) {
 
   const { password, ...userInfo } = createdUser.dataValues;
 
-  return jwt.sign(userInfo, utils.JWT_SECRET, { expiresIn: '1d', algorithm: 'HS256' });
+  return generateToken(userInfo);
 }
 
 async function findAll() {
