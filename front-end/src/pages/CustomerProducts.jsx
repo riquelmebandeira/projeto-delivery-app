@@ -46,10 +46,13 @@ export default function CustomerProducts() {
 
         </div>
 
-        <Link to="/customer/checkout" className="card-button">
+        <Link
+          to="/customer/checkout"
+          className={ cartProducts.length < 1 ? 'disabled-link' : 'cart-button' }
+        >
           <button
             type="button"
-            className="card-button"
+            className="cart-button"
             data-testid="customer_products__button-cart"
             disabled={ cartProducts.length === 0 }
           >
