@@ -43,7 +43,7 @@ const Login = () => {
   const EMAIL_REGEX = /.+@.+\..+/;
 
   return (
-    <main className="login">
+    <main>
       <div className="logo">
         { /* <img src={logo} alt="logo" /> */}
       </div>
@@ -78,16 +78,17 @@ const Login = () => {
         </Link>
       </form>
       {
-        (failedTryLogin)
-          ? (
-            <p data-testid="common_login__element-invalid-email">
-              {
-                `O endereço de e-mail ou a senha não estão corretos.
+        failedTryLogin && (
+          <p
+            data-testid="common_login__element-invalid-email"
+            className="error-message"
+          >
+            {
+              `O endereço de e-mail ou a senha não estão corretos.
                     Por favor, tente novamente.`
-              }
-            </p>
-          )
-          : null
+            }
+          </p>
+        )
       }
     </main>
   );
