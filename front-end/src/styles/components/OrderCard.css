@@ -4,15 +4,19 @@
   box-shadow: 0.1rem 0.1rem 0.1rem gray;
   color: #001813;
   display: flex;
-  height: 6rem;
+  flex-wrap: wrap;
   justify-content: space-around;
-  width: 28rem;
+  width: 480px;
+}
+
+.order-card > * {
+  margin: 0;
 }
 
 .order-card h3 {
   background-color: #eeb438;
-  border-radius: 0.5rem;
-  padding: 1.6rem;
+  border-radius: 8px;
+  padding: 36px;
 }
 
 .order-card div {
@@ -22,4 +26,7 @@
 
 .customer-address {
   font-size: 16px;
+  margin-bottom: 12px;
+  margin-left: auto;
+  margin-right: 12px;
 }
