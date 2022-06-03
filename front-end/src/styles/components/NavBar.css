@@ -32,8 +32,11 @@ h5 {
 
 .logout {
   background-color: #297cf8;
-  padding-left: 10px;
-  padding-right: 10px;
+  border: none;
+  border-radius: 0;
+  font-weight: 800;
+  line-height: 0;
+  padding: 30px;
 }
 
 .flex-container {

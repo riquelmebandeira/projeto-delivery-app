@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Button from './Button';
 import '../styles/components/NavBar.css';
 
 function NavBar(props) {
   console.log(props);
   const { props: { name, role } } = props;
+
+  const handleClick = () => {
+    localStorage.clear();
+
+    window.location.href = '/login';
+  };
 
   return (
     <nav>
@@ -21,14 +28,16 @@ function NavBar(props) {
             </h5>
           </Link>
         )}
-        <Link
-          data-testid="customer_products__element-navbar-link-orders"
-          to={ `/${role}/orders` }
-        >
-          <h5>
-            MEUS PEDIDOS
-          </h5>
-        </Link>
+        { role !== 'administrator' && (
+          <Link
+            data-testid="customer_products__element-navbar-link-orders"
+            to={ `/${role}/orders` }
+          >
+            <h5>
+              MEUS PEDIDOS
+            </h5>
+          </Link>
+        )}
       </div>
 
       <div className="flex-container">
@@ -41,16 +50,12 @@ function NavBar(props) {
           </h5>
         </div>
 
-        <Link
-          data-testid="customer_products__element-navbar-link-logout"
-          to="/login"
+        <Button
+          dataTestId="customer_products__element-navbar-link-logout"
+          text="Sair"
           className="logout"
-          onClick={ () => { localStorage.clear(); } }
-        >
-          <h5>
-            Sair
-          </h5>
-        </Link>
+          onClick={ handleClick }
+        />
       </div>
     </nav>
   );
