@@ -10,6 +10,7 @@
     "pm2": "./node_modules/.bin/pm2",
     "jest": "./node_modules/.bin/jest",
     "start": "./scripts/prepare-for-test.sh",
+    "install:apps": "./apps_install.sh",
     "stop": "(pm2 stop all && pm2 delete all) | grep 'PM2'",
     "dev": "./scripts/prepare-for-dev.sh",
     "dev:prestart": "./scripts/prestart-dev.sh",
