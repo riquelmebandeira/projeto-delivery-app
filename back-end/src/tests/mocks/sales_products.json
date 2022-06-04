@@ -1,0 +1,26 @@
+{
+	"id": 4,
+	"userId": 3,
+	"sellerId": 2,
+	"totalPrice": "6.98",
+	"deliveryAddress": "Rua 09, Nova Cidade, Escada",
+	"deliveryNumber": "42",
+	"saleDate": "2022-06-03T07:58:37.000Z",
+	"status": "Pendente",
+	"seller": {
+		"name": "Fulana Pereira"
+	},
+	"products": [
+		{
+			"id": 11,
+			"name": "Stella Artois 275ml",
+			"price": "3.49",
+			"url_image": "http://localhost:3001/images/stella_artois_275ml.jpg",
+			"SaleProduct": {
+				"saleId": 1,
+				"productId": 11,
+				"quantity": 2
+			}
+		}
+	]
+}

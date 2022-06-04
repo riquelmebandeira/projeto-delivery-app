@@ -1,11 +1,11 @@
 const sinon = require('sinon');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../api/app');
-const { Product, User } = require('../database/models');
-const productsMock = require('./mocks/products.json');
-const [_admin, _seller, customer] = require('./mocks/users.json');
-const { generateToken } = require('../utils/generateToken');
+const app = require('../../api/app');
+const { Product, User } = require('../../database/models');
+const productsMock = require('../mocks/products.json');
+const [_admin, _seller, customer] = require('../mocks/users.json');
+const { generateToken } = require('../../utils/generateToken');
 
 chai.use(chaiHttp);
 

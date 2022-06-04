@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"userId": 3,
+		"sellerId": 2,
+		"totalPrice": "29.10",
+		"deliveryAddress": "Rua 09, Nova Cidade, Escada",
+		"deliveryNumber": "42",
+		"saleDate": "2022-06-03T07:58:37.000Z",
+		"status": "Pendente"
+	},
+	{
+		"id": 2,
+		"userId": 3,
+		"sellerId": 2,
+		"totalPrice": "3.49",
+		"deliveryAddress": "Rua 09, Nova Cidade, Escada",
+		"deliveryNumber": "42",
+		"saleDate": "2022-06-03T07:58:44.000Z",
+		"status": "Preparando"
+	},
+	{
+		"id": 3,
+		"userId": 3,
+		"sellerId": 2,
+		"totalPrice": "33.10",
+		"deliveryAddress": "Rua 09, Nova Cidade, Escada",
+		"deliveryNumber": "42",
+		"saleDate": "2022-06-03T07:58:45.000Z",
+		"status": "Em Trânsito"
+  },
+	{
+		"id": 4,
+		"userId": 3,
+		"sellerId": 2,
+		"totalPrice": "6.98",
+		"deliveryAddress": "Rua 09, Nova Cidade, Escada",
+		"deliveryNumber": "42",
+		"saleDate": "2022-06-03T07:58:37.000Z",
+		"status": "Pendente"
+	}
+]
