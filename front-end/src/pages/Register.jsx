@@ -90,7 +90,9 @@ const Register = () => {
       {
         (failedTryLogin)
           ? (
-            <p data-testid="common_register__element-invalid_register">
+            <p data-testid="common_register__element-invalid_register"
+            className="error-message"
+            >
               {
                 `O endereço de e-mail, senha ou nome 
                 não atendem ao requisitos do cadastro.
