@@ -19,7 +19,9 @@
     "test": "jest -i --forceExit --verbose --config=./jest.config.js",
     "test:dev": "NODE_ENV=development npm run jest -i --forceExit --verbose --config=./jest.config.js",
     "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
-    "test:dev:report": "./__tests__/reports/generate.sh"
+    "test:dev:report": "./__tests__/reports/generate.sh",
+    "compose:up": "docker-compose up -d --build",
+    "compose:down": "docker-compose down --remove-orphans"
   },
   "repository": {
     "type": "git",
@@ -42,8 +44,8 @@
     "mysql2": "2.3.3",
     "pm2": "5.2.0",
     "puppeteer": "13.5.1",
-    "sequelize": "6.17.0",
-    "sequelize-cli": "6.4.1"
+    "sequelize": "6.9.0",
+    "sequelize-cli": "6.3.0"
   },
   "jest": {
     "globals": {
