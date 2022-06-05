@@ -14,7 +14,14 @@ async function login(req, res) {
   return res.status(utils.HTTP_OK_STATUS).json({ token }).end();
 }
 
+async function authenticate(req, res) {
+  const { role } = req.user;
+
+  return res.status(200).json({ role });
+}
+
 module.exports = {
   validate,
   login,
+  authenticate,
 };
