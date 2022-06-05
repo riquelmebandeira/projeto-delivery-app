@@ -13,6 +13,14 @@ export const requestLogin = async (endpoint, body) => {
   return data;
 };
 
+export const authenticate = async (endpoint, token) => {
+  setToken(token);
+
+  const response = await api.post(endpoint);
+
+  return response;
+};
+
 export const requestData = async (endpoint, token) => {
   setToken(token);
   const { data } = await api.get(endpoint);

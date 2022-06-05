@@ -9,15 +9,13 @@ import AdminManage from './pages/AdminManage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-const user = JSON.parse(localStorage.getItem('user'));
-
 function App() {
   return (
     <Routes>
       {/* rota Comum */}
       <Route
         path="/login"
-        element={ user && user.role ? <Navigate to={ `/${user.role}` } /> : <Login /> }
+        element={ <Login /> }
       />
       <Route path="/register" element={ <Register /> } />
       <Route exact path="/" element={ <Navigate to="/login" /> } />

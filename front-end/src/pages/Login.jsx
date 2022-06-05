@@ -5,6 +5,7 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import { requestLogin } from '../services/requests';
 import '../styles/pages/Login.css';
+import { isAuthenticated } from '../utils/isAuthenticated';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -36,6 +37,19 @@ const Login = () => {
   useEffect(() => {
     setFailedTryLogin(false);
   }, [email, password]);
+
+  useEffect(() => {
+    async function verifyUserAuth() {
+      const role = await isAuthenticated()
+
+      if (role) {
+        setRole(role)
+        setIsLogged(true)
+      }
+    }
+
+    verifyUserAuth()
+  }, [])
 
   if (isLogged) return <Navigate to={ `/${role}/` } />;
 
