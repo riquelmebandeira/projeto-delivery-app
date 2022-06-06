@@ -1,4 +1,9 @@
 {
   "root": true,
-  "extends": ["trybe-backend"]
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+      "es6": true
+  }
 }
