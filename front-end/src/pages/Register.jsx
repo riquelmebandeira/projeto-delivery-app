@@ -3,7 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { requestLogin } from '../services/requests';
+import { requestLogin as requestRegister } from '../services/requests';
 import '../styles/pages/Register.css';
 
 const Register = () => {
@@ -11,7 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [isLogged, setIsLogged] = useState(false);
-  const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [failedRegister, setFailedRegister] = useState(false);
   const [role, setRole] = useState('');
 
   const register = async (event) => {
@@ -19,13 +19,13 @@ const Register = () => {
     try {
       const endpoint = '/users';
 
-      const { token } = await requestLogin(endpoint, { name, email, password });
+      const { token } = await requestRegister(endpoint, { name, email, password });
       const user = await jwtDecode(token);
       setRole(user.role);
       localStorage.setItem('user', JSON.stringify({ token, ...user }));
       setIsLogged(true);
     } catch (error) {
-      setFailedTryLogin(true);
+      setFailedRegister(true);
       setIsLogged(false);
     }
   };
@@ -35,7 +35,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    setFailedTryLogin(false);
+    setFailedRegister(false);
   }, [email, password]);
 
   if (isLogged) return <Navigate to={ `/${role}/` } />;
@@ -73,10 +73,6 @@ const Register = () => {
           text="CADASTRAR"
           onClick={ (event) => register(event) }
           dataTestId="common_register__button-register"
-          disabled={ password
-            .length < MIN_CHARACTER
-            || !EMAIL_REGEX.test(email)
-            || name.length < MIN_NAME }
           className="primary__btn"
         />
         <Link to="/login">
@@ -88,7 +84,7 @@ const Register = () => {
         </Link>
       </form>
       {
-        (failedTryLogin)
+        (failedRegister)
           ? (
             <p data-testid="common_register__element-invalid_register"
             className="error-message"
