@@ -1,9 +1,9 @@
 # Projeto Delivery App
 
 # Contexto
-Este projeto é uma aplicação full-stack de um delivery de bebidas, desenvolvida com a stack SERN (SQL, Express.js, React.js, Node.js) e integrada com o Docker Compose.
+Este projeto é uma aplicação full-stack de um delivery de bebidas, desenvolvida com a stack SERN (SQL, Express.js, React.js, Node.js) e integrada com o Docker Compose. Também tivemos como base um protótipo no Figma para o layout das telas, e aplicamos as metódologias ágeis: SCRUM e Kanban.
 
-Nela, existem 3 fluxos possíveis:
+Na aplicação existem 3 fluxos possíveis:
 
 * Cliente: pode fazer pedidos, acompanhá-los e sinalizar ao recebê-los.
 
@@ -11,8 +11,7 @@ Nela, existem 3 fluxos possíveis:
 
 * Administrador: pode cadastrar novos clientes ou vendedores.
 
-O desenvolvimento foi feito aplicando as metodologias ágeis: SCRUM e Kanban.
-
+![Preview da aplicação](preview.png)
 ## Tecnologias usadas
 
 * React
@@ -34,13 +33,13 @@ O desenvolvimento foi feito aplicando as metodologias ágeis: SCRUM e Kanban.
 git clone git@github.com:riquelmebandeira/projeto-delivery-app.git
 ```
 
-2. Entre na pasta do repositório clonado e instale as dependências:
+2. Entre na pasta do repositório clonado:
 
 ```
 cd projeto-delivery-app
 ```
 
-3. Instale as aplicações front-end e back-end com o comando:
+3. Instale as aplicações com o comando:
 
 ```
 npm run install:apps
