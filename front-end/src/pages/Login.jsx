@@ -57,11 +57,8 @@ const Login = () => {
   const EMAIL_REGEX = /.+@.+\..+/;
 
   return (
-    <main>
-      <div className="logo">
-        { /* <img src={logo} alt="logo" /> */}
-      </div>
-      <form className="login-form">
+    <main className="login-page">
+      <form className="acess-form">
         <Input
           type="email"
           labelText="Login"

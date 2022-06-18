@@ -45,9 +45,8 @@ const Register = () => {
   const EMAIL_REGEX = /.+@.+\..+/;
 
   return (
-    <main className="login">
-      <div className="logo" />
-      <form className="register-form">
+    <main className="register-page">
+      <form className="acess-form">
         <Input
           type="text"
           labelText="Nome"
