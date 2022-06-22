@@ -11,7 +11,7 @@ Na aplicação existem 3 fluxos possíveis:
 
 * Administrador: pode cadastrar novos clientes ou vendedores.
 
-![Preview da aplicação](preview.png)
+![Preview da aplicação](preview.gif)
 ## Tecnologias usadas
 
 * React
